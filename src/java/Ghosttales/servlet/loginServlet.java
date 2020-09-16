@@ -40,9 +40,11 @@ public class loginServlet extends HttpServlet {
             out.println("<title>Servlet loginServlet</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("HEllO");
             out.println("<h1>Servlet loginServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            
         }
     }
 
