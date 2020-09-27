@@ -39,7 +39,7 @@ public class loginservlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("registerloginPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
        // Query query = em.createNamedQuery("User.findAll");
        // java.util.List<User> rs = query.getResultList();       
