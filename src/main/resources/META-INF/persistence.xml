@@ -9,7 +9,7 @@
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="sitkmutt"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
->>>>>>> c9023482899f2bfa569ff4074d4587799f2fe04e
+
     </properties>
   </persistence-unit>
 </persistence>
