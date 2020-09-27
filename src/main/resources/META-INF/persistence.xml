@@ -4,7 +4,7 @@
   <persistence-unit name="my_persistence_unit">
         
     </persistence-unit>
-    <persistence-unit name="Ghosttales_PU" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="Ghosttales_PU" transaction-type="RESOURCE_LOCAL">
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ghosttales303?useSSL=false"/>
