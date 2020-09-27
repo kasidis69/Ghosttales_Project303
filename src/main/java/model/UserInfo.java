@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,13 +35,6 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "UserInfo.findByLastName", query = "SELECT u FROM UserInfo u WHERE u.lastName = :lastName")})
 public class UserInfo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "username")
-    private String username;
     @Size(max = 45)
     @Column(name = "password")
     private String password;
@@ -50,6 +44,16 @@ public class UserInfo implements Serializable {
     @Size(max = 45)
     @Column(name = "lastName")
     private String lastName;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userinfousername")
+    private List<Favoritelist> favoritelistList;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "username")
+    private String username;
     @ManyToMany(mappedBy = "userInfoList")
     private List<Post> postList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userInfo")
@@ -70,29 +74,6 @@ public class UserInfo implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public List<Post> getPostList() {
         return postList;
@@ -133,6 +114,39 @@ public class UserInfo implements Serializable {
     @Override
     public String toString() {
         return "model.UserInfo[ username=" + username + " ]";
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @XmlTransient
+    public List<Favoritelist> getFavoritelistList() {
+        return favoritelistList;
+    }
+
+    public void setFavoritelistList(List<Favoritelist> favoritelistList) {
+        this.favoritelistList = favoritelistList;
     }
     
 }
