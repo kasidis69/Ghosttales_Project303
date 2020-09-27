@@ -37,10 +37,9 @@ public class registerServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.mycompany_Ghosttales_war_1.0-SNAPSHOTPU");
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
      
       String username = request.getParameter("username");
