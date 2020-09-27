@@ -6,20 +6,19 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,7 +27,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author kankkm
+ * @author BALL IT24
  */
 @Entity
 @Table(name = "post")
@@ -65,20 +64,11 @@ public class Post implements Serializable {
     private Integer totallike;
     @Column(name = "totaldislike")
     private Integer totaldislike;
-    @JoinTable(name = "favoritelist", joinColumns = {
-        @JoinColumn(name = "Post_post_id", referencedColumnName = "post_id"),
-        @JoinColumn(name = "Post_post_id", referencedColumnName = "post_id"),
-        @JoinColumn(name = "Post_post_id", referencedColumnName = "post_id")}, inverseJoinColumns = {
-        @JoinColumn(name = "User_info_username", referencedColumnName = "username"),
-        @JoinColumn(name = "User_info_username", referencedColumnName = "username")})
-    @ManyToMany
-    private List<UserInfo> userInfoList;
-    @JoinColumns({
-        @JoinColumn(name = "User_info_username", referencedColumnName = "username"),
-        @JoinColumn(name = "User_info_username", referencedColumnName = "username"),
-        @JoinColumn(name = "User_info_username", referencedColumnName = "username")})
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postpostid")
+    private Collection<Favoritelist> favoritelistCollection;
+    @JoinColumn(name = "User_info_username", referencedColumnName = "username")
     @ManyToOne(optional = false)
-    private UserInfo userInfo;
+    private UserInfo userinfousername;
 
     public Post() {
     }
@@ -143,20 +133,20 @@ public class Post implements Serializable {
         this.totaldislike = totaldislike;
     }
 
-    public List<UserInfo> getUserInfoList() {
-        return userInfoList;
+    public Collection<Favoritelist> getFavoritelistCollection() {
+        return favoritelistCollection;
     }
 
-    public void setUserInfoList(List<UserInfo> userInfoList) {
-        this.userInfoList = userInfoList;
+    public void setFavoritelistCollection(Collection<Favoritelist> favoritelistCollection) {
+        this.favoritelistCollection = favoritelistCollection;
     }
 
-    public UserInfo getUserInfo() {
-        return userInfo;
+    public UserInfo getUserinfousername() {
+        return userinfousername;
     }
 
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
+    public void setUserinfousername(UserInfo userinfousername) {
+        this.userinfousername = userinfousername;
     }
 
     @Override
