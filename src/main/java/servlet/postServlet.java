@@ -51,12 +51,16 @@ public class postServlet extends HttpServlet {
             throws ServletException, IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
-
+     HttpSession session = request.getSession();
+     
+      
+     
+      
       String content = request.getParameter("content");
      // String content = "oiadjioajdoiajdiajsi";
         System.out.println("---1---");
-      String title = request.getParameter("title");
-        String author = "aaaa";
+       String title = request.getParameter("title");
+        String author = (String) session.getAttribute("user");
         UserInfo u = em.find(UserInfo.class, author);
         LocalDate today = LocalDate.now();
         
