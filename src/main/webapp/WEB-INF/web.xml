@@ -4,9 +4,17 @@
         <servlet-name>homepageServlet</servlet-name>
         <servlet-class>servlet.homepageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutservlet</servlet-name>
+        <servlet-class>servlet.logoutservlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homepageServlet</servlet-name>
-        <url-pattern>/homepageServlet</url-pattern>
+        <url-pattern>/homepage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutservlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

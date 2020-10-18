@@ -36,7 +36,10 @@
         <p><a href="#">test2</a></p>
         <p><a href="#">test3</a></p>
         <p><a href="#">test4</a></p>
-        <p>--------------</p>
+        <a href="${user==null ?'':'post.jsp'}">
+                 ${user==null ?'':'Post'}
+        
+      
         <p>
         <a href="${user==null ?'login':'logout'}">
                  ${user==null ?'Login' : 'Logout'}
