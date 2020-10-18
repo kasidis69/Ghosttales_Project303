@@ -16,7 +16,7 @@
     <body>
     <div class="row bg-light">
     <div class='col-9'>
-        <img src=' ' height="40"/>Gosttales :: Home
+        <img src=' ' height="40"/>Ghosttales :: Home
        <br>
         <c:forEach items="${ps}" var="post" varStatus="vs">
  
