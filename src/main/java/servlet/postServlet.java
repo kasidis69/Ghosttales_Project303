@@ -27,6 +27,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Post;
 import model.UserInfo;
 
@@ -55,7 +56,7 @@ public class postServlet extends HttpServlet {
      // String content = "oiadjioajdoiajdiajsi";
         System.out.println("---1---");
       String title = request.getParameter("title");
-        String author = "kk";
+        String author = "aaaa";
         UserInfo u = em.find(UserInfo.class, author);
         LocalDate today = LocalDate.now();
         
@@ -66,8 +67,8 @@ public class postServlet extends HttpServlet {
             
          
 
-            Post post = new Post();
-            int min = 0;
+     Post post = new Post();
+     int min = 0;
      int max = 100;
      int random_int = (int)(Math.random() * (max - min + 1) + min);
             post.setPostId(random_int);
@@ -85,15 +86,16 @@ public class postServlet extends HttpServlet {
             em.getTransaction().begin();
             em.persist(post);
             em.getTransaction().commit();
+             
+
             
             
-            
-        }
         
-        getServletContext().getRequestDispatcher("/post.jsp").forward(request, response);
+        
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
         
         }
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
