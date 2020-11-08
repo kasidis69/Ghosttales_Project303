@@ -22,7 +22,7 @@ import model.Post;
  *
  * @author User
  */
-public class homepageServlet extends HttpServlet {
+public class otherpost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,14 +35,14 @@ public class homepageServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
          EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
          javax.persistence.Query query = em.createNamedQuery("Post.findAll");
                
-               List<Post> ps = query.getResultList().subList(0,3);
+               List<Post> ps = query.getResultList();
                 
                 for (Post p : ps){
                System.out.println(p.getTitle());
