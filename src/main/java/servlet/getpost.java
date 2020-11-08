@@ -15,14 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Post;
 
 /**
  *
  * @author User
  */
-public class otherpost extends HttpServlet {
+public class getpost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,30 +34,21 @@ public class otherpost extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+      String hrefname = request.getParameter("id");
+        int id =Integer.parseInt(hrefname);
          response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
          EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
-         javax.persistence.Query query = em.createNamedQuery("Post.findAll");
-               
-               List<Post> ps = query.getResultList();
-                
-                for (Post p : ps){
-               System.out.println(p.getTitle());
-          
-              }
-                
-          
-                   HttpSession session = request.getSession();
-                
-               session.setAttribute("ps",ps);
-                
-               
-               request.getRequestDispatcher("/index2.jsp").forward(request, response);
-               
-    } 
-    
+         javax.persistence.Query query = em.createNamedQuery("Post.findByPostId");
+         query.setParameter("postId", id);
+         Post ps =  (Post) query.getSingleResult();
+         request.setAttribute("post", ps);
+         System.out.println(ps.getContent());
+         request.getRequestDispatcher("/dopost.jsp").forward(request, response);
+        
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -1,10 +1,9 @@
 <%-- 
-    Document   : index
-    Created on : Oct 31, 2020, 11:41:05 PM
+    Document   : dopost
+    Created on : Nov 1, 2020, 12:27:21 AM
     Author     : User
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,100 +69,28 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>Ghosttales</h1>
-            <span class="subheading"> รวมเรื่องเล่าสุดหลอนจากทั่วทุกมุมโลก !!!</span>
+          <div class="post-heading">
+            <h1>${post.title}</h1>
+            <!--h2 class="subheading">Problems look mighty small from 150 miles up</h2-->
+            <span class="meta">Posted by
+            <a href="#">${post.userinfousername.firstName}  </a>
+            on ${post.createTime}</span>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-   
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 col-md-10 mx-auto">
-          <c:forEach items="${ps}" var="post" varStatus="vs">
-        <div class="post-preview">
-            
-          <a href="post.html">
-            <h2 class="post-title" >
-                
-                 
- 
-    
-        <a href="getpost?id=${post.postId}" > ${post.title} </a>
-        </h2>
-    <h3 class="post-subtitle">
-              <!--Problems look mighty small from 150 miles up-->
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">${post.userinfousername.firstName}  </a>
-            on ${post.createTime}</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-   </tr> 
-   
-   
-</c:forEach>
-              <!--Man must explore, and this is exploration at its greatest-->
-            
-              
-              
-              
-          <!--  
-            <h2 class="post-title">
-              I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-            </h2>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on September 18, 2019</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Science has not yet mastered prophecy
-            </h2>
-            <h3 class="post-subtitle">
-              We predict too much for the next year and yet far too little for the next ten.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on August 24, 2019</p>
-        </div>
-        <hr>
-        <div class="post-preview">
-          <a href="post.html">
-            <h2 class="post-title">
-              Failure is not an option
-            </h2>
-            <h3 class="post-subtitle">
-              Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on July 8, 2019</p>
-        </div>
-        <hr>
-          -->
-          
-          
-          
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="otherpost">Show more  &#9661;</a>
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            ${post.content}
         </div>
       </div>
     </div>
-  </div>
+  </article>
 
   <hr>
 
@@ -214,4 +141,3 @@
 </body>
 
 </html>
-

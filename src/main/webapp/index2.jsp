@@ -159,7 +159,7 @@
           
         <!-- Pager -->
         <div class="clearfix">
-          <a class="btn btn-primary float-right" href="otherpost">Show more  &#9661;</a>
+          <a class="btn btn-primary float-right" href="homepage">Show less  &#9651;</a>
         </div>
       </div>
     </div>
@@ -214,4 +214,3 @@
 </body>
 
 </html>
-
