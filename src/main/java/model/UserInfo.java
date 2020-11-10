@@ -132,7 +132,7 @@ public class UserInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "model.UserInfo[ username=" + username + " ]";
+        return  username ;
     }
     
 }

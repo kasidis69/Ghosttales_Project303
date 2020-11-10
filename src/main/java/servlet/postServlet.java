@@ -90,17 +90,29 @@ public class postServlet extends HttpServlet {
             em.persist(post);
             em.getTransaction().commit();
              
+            session.setAttribute("show", post);
+            
+            
+//            post = em.find(Post.class, random_int);
+//            session.setAttribute("post", post.getContent());
+//            post = em.find(Post.class, random_int);
+//            session.setAttribute("title", post.getTitle());
+//            post = em.find(Post.class, random_int);
+//            session.setAttribute("author", post.getUserinfousername().toString());
+//            post = em.find(Post.class, random_int);
+//            session.setAttribute("day", post.getCreateTime());
+            
+        
+        
 
-            
-            
-        
-        
-        request.getRequestDispatcher("/homepage").forward(request, response);
+        request.getRequestDispatcher("/story.jsp").forward(request, response);
+
         }
 
  request.setAttribute("Message","กรุณากรอกข้อมูลให้ครบด้วยครับ");
   request.getRequestDispatcher("/post.jsp").forward(request, response);
     
+
         
         }
 

@@ -75,11 +75,13 @@
   </header>
         <form action ="postServlet" method="POST">
         <h1>POST !!</h1>
+
         <label for="content">Post your story here:</label>
         <input type="text" name="title" placeholder="title" required />
 
 
         <textarea placeholder="content" id="content" name="content" rows="5" cols="150" required>
+
   
   </textarea>
 <br>
