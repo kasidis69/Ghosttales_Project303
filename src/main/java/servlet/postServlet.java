@@ -63,20 +63,16 @@ public class postServlet extends HttpServlet {
      // String content = "oiadjioajdoiajdiajsi";
         System.out.println("---1---");
        String title = request.getParameter("title");
-        String author = (String) session.getAttribute("user");
+        String author = (String) session.getAttribute("userr");
         UserInfo u = em.find(UserInfo.class, author);
         LocalDate today = LocalDate.now();
         
        System.out.println(u.getUsername());
         
-        if(content != null && u != null) {
-          
-            
-         
-
-     Post post = new Post();
+        if(content != null && title !=null) {
+                Post post = new Post();
      int min = 0;
-     int max = 100;
+     int max = 100000;
      int random_int = (int)(Math.random() * (max - min + 1) + min);
             post.setPostId(random_int);
            post.setTitle(title);
@@ -100,9 +96,14 @@ public class postServlet extends HttpServlet {
         
         
         request.getRequestDispatcher("/homepage").forward(request, response);
+        }
+
+ request.setAttribute("Message","กรุณากรอกข้อมูลให้ครบด้วยครับ");
+  request.getRequestDispatcher("/post.jsp").forward(request, response);
+    
         
         }
-    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

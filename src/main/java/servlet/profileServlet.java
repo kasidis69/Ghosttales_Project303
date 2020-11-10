@@ -7,26 +7,23 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import model.Post;
 import model.UserInfo;
 
 /**
  *
- * @author kankkm
+ * @author User
  */
-@WebServlet(name = "loginservlet", urlPatterns = {"/login"})
-public class loginservlet extends HttpServlet {
+public class profileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,33 +36,37 @@ public class loginservlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       String username = request.getParameter("name");
+       
+       
+         response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
-       // Query query = em.createNamedQuery("User.findAll");
-       // java.util.List<User> rs = query.getResultList();       
-//for (User r:rs){
-          // System.out.println(r.getName());     
-       String username = request.getParameter("username");
-     String password = request.getParameter("password");
-      //int name = Integer.parseInt(username);
-      UserInfo u =em.find(UserInfo.class, username);
-      //Query u =em.createNamedQuery("User.findAll");
-        
-      if (u != null && u.getPassword().equals(password) ) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", u);
-            session.setAttribute("userr", u.getUsername());
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-            request.setAttribute("Message", "ไม่มีชื่อผู้ใช้นี้ หรือ รหัสผ่านไม่ถูกต้อง");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-            
-            
+        //String sql= "SELECT p FROM Post p WHERE p.username = :userinfousername" ; 
+         javax.persistence.Query query2 = em.createNamedQuery("UserInfo.findByUsername");
+         query2.setParameter("username", username);
+       Collection<Post> us2 =  query2.getResultList();
+         request.setAttribute("mypost",us2);
+//                         for (Post p : us2){
+//               System.out.println(p.getTitle());
+//          
+//              }
+         
+         
+         javax.persistence.Query query = em.createNamedQuery("UserInfo.findByUsername");
+         query.setParameter("username", username);
+         UserInfo us =  (UserInfo) query.getSingleResult();
+         request.setAttribute("user", us);
       
+         
+         
+         request.getRequestDispatcher("/profile.jsp").forward(request, response);
         
-        }
+        
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -79,7 +80,7 @@ public class loginservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**

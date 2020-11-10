@@ -10,11 +10,15 @@
     </servlet>
     <servlet>
         <servlet-name>otherpost</servlet-name>
-        <servlet-class>servlet.otherpost</servlet-class>
+        <servlet-class>servlet.otherpostServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>getpost</servlet-name>
-        <servlet-class>servlet.getpost</servlet-class>
+        <servlet-class>servlet.getpostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>profileServlet</servlet-name>
+        <servlet-class>servlet.profileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>homepageServlet</servlet-name>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>getpost</servlet-name>
         <url-pattern>/getpost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>profileServlet</servlet-name>
+        <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

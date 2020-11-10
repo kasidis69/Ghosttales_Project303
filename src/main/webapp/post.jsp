@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta  http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Post</title>
         
           <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,11 @@
                  ${user==null ?'Login' : 'Logout'}
         </a>
           </li>
-          <a style="color: white"> Hello   ${user==null ?'Guest':user}</a>
+                 <a  style="color: white">  ${user==null ?'Guest':''}</a>
+          <li class="nav-item">
+          
+          <a href="profile?name=${user.username}"  style="color: white"> ${user==null ?'':user.username}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -71,13 +75,17 @@
   </header>
         <form action ="postServlet" method="POST">
         <h1>POST !!</h1>
-        <input type="text" name="title"/>
-<label for="content">Post your story here:</label>
+        <label for="content">Post your story here:</label>
+        <input type="text" name="title" placeholder="title" required />
 
-<textarea id="content" name="content" rows="10" cols="200">
+
+        <textarea placeholder="content" id="content" name="content" rows="5" cols="150" required>
   
   </textarea>
-
-<input type="submit" value="submit" /></form>
+<br>
+Post by : <input type="text" name="username" value="${user.username}" readonly>
+${Message}
+<br>
+<input type="submit" value="Post" /></form>
     </body>
 </html>

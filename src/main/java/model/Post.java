@@ -38,6 +38,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Post.findByCreateTime", query = "SELECT p FROM Post p WHERE p.createTime = :createTime"),
     @NamedQuery(name = "Post.findByUpdateTime", query = "SELECT p FROM Post p WHERE p.updateTime = :updateTime"),
     @NamedQuery(name = "Post.findByTotallike", query = "SELECT p FROM Post p WHERE p.totallike = :totallike"),
+    @NamedQuery(name = "Post.findByUsername", query = "SELECT p FROM Post p WHERE p.userinfousername.username = :userinfousername"),
     @NamedQuery(name = "Post.findByTotaldislike", query = "SELECT p FROM Post p WHERE p.totaldislike = :totaldislike")})
 public class Post implements Serializable {
 

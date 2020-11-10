@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Clean Blog - Start Bootstrap Theme</title>
+  <title>Ghosttales</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a href="${user==null ?'':'post.jsp'}">
+            <a href="${user==null ?'login.jsp':'post.jsp'}">
                  ${user==null ?'Post':'Post'}</a>
           </li>
           <li class="nav-item">
@@ -58,7 +58,11 @@
                  ${user==null ?'Login' : 'Logout'}
         </a>
           </li>
-          <a style="color: white"> Hello   ${user==null ?'Guest':user}</a>
+                    <a  style="color: white">  ${user==null ?'Guest':''}</a>
+          <li class="nav-item">
+          
+          <a href="profile?name=${user.username}"  style="color: white"> ${user==null ?'':user.username}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -100,7 +104,7 @@
             </h3>
           </a>
           <p class="post-meta">Posted by
-            <a href="#">${post.userinfousername.firstName}  </a>
+            <a href="profile?name=${post.userinfousername.username}">${post.userinfousername.username}  </a>
             on ${post.createTime}</p>
         </div>
         <hr>

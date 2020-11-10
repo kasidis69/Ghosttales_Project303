@@ -22,7 +22,7 @@ import model.Post;
  *
  * @author User
  */
-public class otherpost extends HttpServlet {
+public class otherpostServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

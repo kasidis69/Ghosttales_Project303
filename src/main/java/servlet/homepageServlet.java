@@ -45,10 +45,10 @@ public class homepageServlet extends HttpServlet {
                
                List<Post> ps = query.getResultList().subList(0,3);
                 
-                for (Post p : ps){
-               System.out.println(p.getTitle());
-          
-              }
+//                for (Post p : ps){
+//               System.out.println(p.getTitle());
+//          
+//              }
                 
           
                    HttpSession session = request.getSession();

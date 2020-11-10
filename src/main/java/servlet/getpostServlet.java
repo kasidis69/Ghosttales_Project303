@@ -21,7 +21,7 @@ import model.Post;
  *
  * @author User
  */
-public class getpost extends HttpServlet {
+public class getpostServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

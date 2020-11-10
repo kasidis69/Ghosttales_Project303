@@ -49,7 +49,7 @@
             <a class="nav-link" href="about.html">About</a>
           </li>
           <li class="nav-item">
-            <a href="${user==null ?'':'post.jsp'}">
+            <a href="${user==null ?'login.jsp':'post.jsp'}">
                  ${user==null ?'Post':'Post'}</a>
           </li>
           <li class="nav-item">
@@ -57,7 +57,12 @@
                  ${user==null ?'Login' : 'Logout'}
         </a>
           </li>
-          <a style="color: white"> Hello   ${user==null ?'Guest':user}</a>
+          </li>
+                   <a  style="color: white">  ${user==null ?'Guest':''}</a>
+          <li class="nav-item">
+          
+          <a href="profile?name=${user.username}"  style="color: white"> ${user==null ?'':user.username}</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -73,7 +78,7 @@
             <h1>${post.title}</h1>
             <!--h2 class="subheading">Problems look mighty small from 150 miles up</h2-->
             <span class="meta">Posted by
-            <a href="#">${post.userinfousername.firstName}  </a>
+            <a href="profile?name=${post.userinfousername.username}"> ${post.userinfousername.username}  </a>
             on ${post.createTime}</span>
           </div>
         </div>
