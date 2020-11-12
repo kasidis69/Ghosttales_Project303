@@ -75,7 +75,7 @@ body {
                 
                 
                 <p>Name :  ${user.firstName} ${user.lastName}  </p>
-                
+                <h1><a href="editprofile.jsp"> Edit Profile </a></h1>
                 <p>Post</p>
                 <c:forEach items="${mypost}" var="post" varStatus="vs">
                 <p><a href="getpost?id=${post.postId}">${post.title} </a></p>

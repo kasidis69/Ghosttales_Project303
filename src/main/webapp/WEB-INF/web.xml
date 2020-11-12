@@ -20,6 +20,10 @@
         <servlet-name>profileServlet</servlet-name>
         <servlet-class>servlet.profileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>editprofileServlet</servlet-name>
+        <servlet-class>servlet.editprofileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homepageServlet</servlet-name>
         <url-pattern>/homepage</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>profileServlet</servlet-name>
         <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>editprofileServlet</servlet-name>
+        <url-pattern>/editprofile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
