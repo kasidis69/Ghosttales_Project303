@@ -105,7 +105,7 @@ public class postServlet extends HttpServlet {
         
         
 
-        request.getRequestDispatcher("/story.jsp").forward(request, response);
+        request.getRequestDispatcher("/homepage").forward(request, response);
 
         }
 

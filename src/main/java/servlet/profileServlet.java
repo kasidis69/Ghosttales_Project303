@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +38,7 @@ public class profileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        String username = request.getParameter("name");
+        
        
        
          response.setContentType("text/html;charset=UTF-8");
@@ -45,15 +47,17 @@ public class profileServlet extends HttpServlet {
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
-        //String sql= "SELECT p FROM Post p WHERE p.username = :userinfousername" ; 
-         javax.persistence.Query query2 = em.createNamedQuery("UserInfo.findByUsername");
-         query2.setParameter("username", username);
-       Collection<Post> us2 =  query2.getResultList();
-         request.setAttribute("mypost",us2);
-//                         for (Post p : us2){
-//               System.out.println(p.getTitle());
-//          
-//              }
+        String sql= "SELECT p FROM Post p WHERE p.userinfousername = :userinfousername" ; 
+        Query qry =em.createQuery(sql);
+        
+         qry.setParameter("userinfousername", em.find(UserInfo.class,username));
+       List<Post> ps =  qry.getResultList();
+         request.setAttribute("mypost",ps);
+                      
+         for (Post p : ps){
+               System.out.println(p.getTitle());
+          
+              }
          
          
          javax.persistence.Query query = em.createNamedQuery("UserInfo.findByUsername");

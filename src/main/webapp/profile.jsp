@@ -3,7 +3,7 @@
     Created on : 9 Nov 2020, 18:28:08
     Author     : kankkm
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -76,9 +76,9 @@ body {
                 
                 <p>Name :  ${user.firstName} ${user.lastName}  </p>
                 
-                <p>Post : </p>
+                <p>Post</p>
                 <c:forEach items="${mypost}" var="post" varStatus="vs">
-                <p>${post.postCollection}</p>
+                <p><a href="getpost?id=${post.postId}">${post.title} </a></p>
                 </c:forEach>
                 
                    <p><a href="homepage"> คลิกเพื่อกลับไปที่หน้าหลัก </a></p>
