@@ -43,6 +43,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div class="col-6 ">
+                    <form action="search" method="POST">
+                        <span  style="color:white"><a> หาเรื่องที่เราอยากอ่าน:</a></span> <input type="text" name="searchParam"
+                                                        minlength="3"
+                                                required/>
+                        <input  type="submit" value="search" /> 
+                        <br>
+                        <span  style="color:red">${message}</span>
+                    </form>
+                </div>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
@@ -82,7 +94,8 @@
       </div>
     </div>
   </header>
-
+  
+                 
   <!-- Main Content -->
    
   <div class="container">
