@@ -46,13 +46,15 @@ public class editprofileServlet extends HttpServlet {
           String username =  (String) session.getAttribute("userr");
            UserInfo user=em.find(UserInfo.class,username );
            
+            String newpassword = request.getParameter("newpassword");
     String password = request.getParameter("password");
     String fname = request.getParameter("firstname");
     String lname = request.getParameter("lastname"); 
         
      //UserInfo user = new UserInfo();
+      if(user.getPassword().equals(password)){
  user.setUsername(username);
-  user.setPassword(password);
+  user.setPassword(newpassword);
   user.setFirstName(fname);
   user.setLastName(lname);
   
@@ -75,8 +77,12 @@ String EDIT4="UPDATE  UserInfo u SET u.lastName=' " + lname + " ' where u.userna
                 System.out.println(user.getUsername());
                 System.out.println(fname);
            request.getRequestDispatcher("/logout").forward(request, response);  
+              }else {
+            request.setAttribute("Message", "Current Password is not correct");
+            request.getRequestDispatcher("editprofile.jsp").forward(request, response);
   //em.persist(user);
   //em.getTransaction().commit();
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
