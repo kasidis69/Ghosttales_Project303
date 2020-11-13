@@ -11,11 +11,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Favoritelist;
+import model.Post;
+
+import model.Favoritelist;
+
 import model.Post;
 
 /**
@@ -36,7 +42,11 @@ public class getpostServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+
+    HttpSession session = request.getSession();
+
       String hrefname = request.getParameter("id");
+      String username = (String) session.getAttribute("userr");
         int id =Integer.parseInt(hrefname);
          response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -47,10 +57,36 @@ public class getpostServlet extends HttpServlet {
          query.setParameter("postId", id);
          Post ps =  (Post) query.getSingleResult();
          
-          HttpSession session = request.getSession();
+          
         session.setAttribute("post", ps);
         session.setAttribute("postid", ps.getPostId());
          System.out.println(ps.getContent());
+         
+         String sql= "SELECT f FROM Favoritelist f WHERE f.favoritelistPK.postpostid = :id AND f.favoritelistPK.userinfousername = :username" ; 
+        Query qry =em.createQuery(sql);
+        qry.setParameter("id", id);
+         qry.setParameter("username", username);
+        List  <Favoritelist> fa =   qry.getResultList();
+        
+
+        
+        if(!fa.isEmpty()){
+               session.setAttribute("follow", true);
+        }else{
+             session.setAttribute("follow", false);
+        }
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
          request.getRequestDispatcher("/dopost.jsp").forward(request, response);
         
     }

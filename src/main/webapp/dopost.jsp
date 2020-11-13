@@ -96,7 +96,7 @@
             ${post.content}
           
         </div>
-         <a href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> heart  </a>
+         <a href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> <img src ="img/${follow? 'heart2.jpg':'heart1.png'}" width="20"/></a>
       </div>
     </div>
   </article>
