@@ -24,6 +24,10 @@
         <servlet-name>editprofileServlet</servlet-name>
         <servlet-class>servlet.editprofileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>forgotServlet</servlet-name>
+        <servlet-class>servlet.forgotServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homepageServlet</servlet-name>
         <url-pattern>/homepage</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>editprofileServlet</servlet-name>
         <url-pattern>/editprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>forgotServlet</servlet-name>
+        <url-pattern>/forgotServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

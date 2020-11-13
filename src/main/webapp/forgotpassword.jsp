@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : 23 Sep 2020, 18:19:51
+    Document   : forgotpassword
+    Created on : 13 Nov 2020, 14:28:20
     Author     : kankkm
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>ForgotPassword</title>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
        
           <!-- Bootstrap core CSS -->
@@ -67,26 +67,25 @@ body {
       </div>
     </div>
    </nav>
-
+    <body>
         <div class="container">
             <div class="box">
-                <img class="avatar" src="img/g.png">
-                <h1>เข้าสู่ระบบ</h1>
-                <form action="login" method="post">
-                    <p>Username</p>
-                    <input type="text"  name="username" required>
-                    <p>Password</p>
-                    <input type="password" name="password" required>
-                    <div style="color: red" >${Message}</div>
-                    <input type="submit" value="login">  
-                    <a href="forgotpassword.jsp">ลืมรหัสผ่าน?</a>
-                    <a href="register.jsp"><br>สมัครสมาชิก คลิกเลย</a>
+         <h1>
+Forgot Password</h1>
+<form action="forgotServlet" method="post">
+                   <p>ใส่ Username ของคุณ</p>
+                   <input type="text"  name="username"   required>
+              <p>ใส่ Firstname ของคุณ</p>
+<input type="text"  name="firstname"  required>
+<p>ใส่ Lastname ของคุณ</p>
+<input type="text"  name="lastname"   required>
+<div style="color: red" >${Message}</div>
+                   <input type="submit" value="Show Password">
+                   
                 </form>
-            </div>
+                   </div>
 
 
         </div>
-      
     </body>
 </html>
-
