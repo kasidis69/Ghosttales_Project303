@@ -93,6 +93,7 @@
         <div class="col-lg-8 col-md-10 mx-auto">
             ${post.content}
         </div>
+         <a href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> heart  </a>
       </div>
     </div>
   </article>

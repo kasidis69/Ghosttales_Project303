@@ -6,7 +6,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,39 +21,38 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author BALL IT24
+ * @author User
  */
 @Entity
 @Table(name = "user_info")
 @NamedQueries({
     @NamedQuery(name = "UserInfo.findAll", query = "SELECT u FROM UserInfo u"),
     @NamedQuery(name = "UserInfo.findByUsername", query = "SELECT u FROM UserInfo u WHERE u.username = :username"),
-    @NamedQuery(name = "UserInfo.findByPassword", query = "SELECT u FROM UserInfo u WHERE u.password = :password"),
     @NamedQuery(name = "UserInfo.findByFirstName", query = "SELECT u FROM UserInfo u WHERE u.firstName = :firstName"),
-    
-    @NamedQuery(name = "UserInfo.findByLastName", query = "SELECT u FROM UserInfo u WHERE u.lastName = :lastName")})
+    @NamedQuery(name = "UserInfo.findByLastName", query = "SELECT u FROM UserInfo u WHERE u.lastName = :lastName"),
+    @NamedQuery(name = "UserInfo.findByPassword", query = "SELECT u FROM UserInfo u WHERE u.password = :password")})
 public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
+    @Size(min = 1, max = 255)
     @Column(name = "username")
     private String username;
-    @Size(max = 45)
-    @Column(name = "password")
-    private String password;
-    @Size(max = 45)
+    @Size(max = 255)
     @Column(name = "firstName")
     private String firstName;
-    @Size(max = 45)
+    @Size(max = 255)
     @Column(name = "lastName")
     private String lastName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userinfousername")
-    private Collection<Favoritelist> favoritelistCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userinfousername")
-    private Collection<Post> postCollection;
+    @Size(max = 255)
+    @Column(name = "password")
+    private String password;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userInfo")
+    private List<Favoritelist> favoritelistList;
+    @OneToMany(mappedBy = "userinfousername")
+    private List<Post> postList;
 
     public UserInfo() {
     }
@@ -68,14 +67,6 @@ public class UserInfo implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstName() {
@@ -94,20 +85,28 @@ public class UserInfo implements Serializable {
         this.lastName = lastName;
     }
 
-    public Collection<Favoritelist> getFavoritelistCollection() {
-        return favoritelistCollection;
+    public String getPassword() {
+        return password;
     }
 
-    public void setFavoritelistCollection(Collection<Favoritelist> favoritelistCollection) {
-        this.favoritelistCollection = favoritelistCollection;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Collection<Post> getPostCollection() {
-        return postCollection;
+    public List<Favoritelist> getFavoritelistList() {
+        return favoritelistList;
     }
 
-    public void setPostCollection(Collection<Post> postCollection) {
-        this.postCollection = postCollection;
+    public void setFavoritelistList(List<Favoritelist> favoritelistList) {
+        this.favoritelistList = favoritelistList;
+    }
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
     }
 
     @Override
@@ -132,7 +131,7 @@ public class UserInfo implements Serializable {
 
     @Override
     public String toString() {
-        return  username ;
+        return "model.UserInfo[ username=" + username + " ]";
     }
     
 }

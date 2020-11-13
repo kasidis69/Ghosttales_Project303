@@ -6,8 +6,8 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,19 +27,18 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author BALL IT24
+ * @author User
  */
 @Entity
 @Table(name = "post")
 @NamedQueries({
     @NamedQuery(name = "Post.findAll", query = "SELECT p FROM Post p"),
     @NamedQuery(name = "Post.findByPostId", query = "SELECT p FROM Post p WHERE p.postId = :postId"),
-    @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = :title"),
     @NamedQuery(name = "Post.findByCreateTime", query = "SELECT p FROM Post p WHERE p.createTime = :createTime"),
-    @NamedQuery(name = "Post.findByUpdateTime", query = "SELECT p FROM Post p WHERE p.updateTime = :updateTime"),
+    @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = :title"),
+    @NamedQuery(name = "Post.findByTotaldislike", query = "SELECT p FROM Post p WHERE p.totaldislike = :totaldislike"),
     @NamedQuery(name = "Post.findByTotallike", query = "SELECT p FROM Post p WHERE p.totallike = :totallike"),
-    @NamedQuery(name = "Post.findByUsername", query = "SELECT p FROM Post p WHERE p.userinfousername = :userinfousername"),
-    @NamedQuery(name = "Post.findByTotaldislike", query = "SELECT p FROM Post p WHERE p.totaldislike = :totaldislike")})
+    @NamedQuery(name = "Post.findByUpdateTime", query = "SELECT p FROM Post p WHERE p.updateTime = :updateTime")})
 public class Post implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,27 +47,27 @@ public class Post implements Serializable {
     @NotNull
     @Column(name = "post_id")
     private Integer postId;
-    @Size(max = 45)
-    @Column(name = "title")
-    private String title;
     @Lob
-    @Size(max = 65535)
+    @Size(max = 2147483647)
     @Column(name = "content")
     private String content;
     @Column(name = "create_time")
     @Temporal(TemporalType.DATE)
     private Date createTime;
+    @Size(max = 255)
+    @Column(name = "title")
+    private String title;
+    @Column(name = "totaldislike")
+    private Integer totaldislike;
+    @Column(name = "totallike")
+    private Integer totallike;
     @Column(name = "update_time")
     @Temporal(TemporalType.DATE)
     private Date updateTime;
-    @Column(name = "totallike")
-    private Integer totallike;
-    @Column(name = "totaldislike")
-    private Integer totaldislike;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "postpostid")
-    private Collection<Favoritelist> favoritelistCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Favoritelist> favoritelistList;
     @JoinColumn(name = "User_info_username", referencedColumnName = "username")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private UserInfo userinfousername;
 
     public Post() {
@@ -84,14 +83,6 @@ public class Post implements Serializable {
 
     public void setPostId(Integer postId) {
         this.postId = postId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getContent() {
@@ -110,20 +101,12 @@ public class Post implements Serializable {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public Integer getTotallike() {
-        return totallike;
-    }
-
-    public void setTotallike(Integer totallike) {
-        this.totallike = totallike;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getTotaldislike() {
@@ -134,12 +117,28 @@ public class Post implements Serializable {
         this.totaldislike = totaldislike;
     }
 
-    public Collection<Favoritelist> getFavoritelistCollection() {
-        return favoritelistCollection;
+    public Integer getTotallike() {
+        return totallike;
     }
 
-    public void setFavoritelistCollection(Collection<Favoritelist> favoritelistCollection) {
-        this.favoritelistCollection = favoritelistCollection;
+    public void setTotallike(Integer totallike) {
+        this.totallike = totallike;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public List<Favoritelist> getFavoritelistList() {
+        return favoritelistList;
+    }
+
+    public void setFavoritelistList(List<Favoritelist> favoritelistList) {
+        this.favoritelistList = favoritelistList;
     }
 
     public UserInfo getUserinfousername() {

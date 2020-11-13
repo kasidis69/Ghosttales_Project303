@@ -5,6 +5,14 @@
         <servlet-class>servlet.homepageServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>favoritelistServlet</servlet-name>
+        <servlet-class>servlet.favoritelistServlet</servlet-class>
+</servlet>
+<servlet>
+        <servlet-name>getfavoritelist</servlet-name>
+        <servlet-class>servlet.getfavoritelist</servlet-class>
+</servlet>
+    <servlet>
         <servlet-name>logoutservlet</servlet-name>
         <servlet-class>servlet.logoutservlet</servlet-class>
     </servlet>
@@ -32,6 +40,14 @@
         <servlet-name>homepageServlet</servlet-name>
         <url-pattern>/homepage</url-pattern>
     </servlet-mapping>
+<servlet-mapping>
+        <servlet-name>favoritelistServlet</servlet-name>
+        <url-pattern>/favoritelist</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+        <servlet-name>getfavoritelist</servlet-name>
+        <url-pattern>/getfavoritelist</url-pattern>
+ </servlet-mapping>
     <servlet-mapping>
         <servlet-name>logoutservlet</servlet-name>
         <url-pattern>/logout</url-pattern>

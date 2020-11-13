@@ -6,46 +6,57 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author BALL IT24
+ * @author User
  */
 @Entity
 @Table(name = "favoritelist")
 @NamedQueries({
     @NamedQuery(name = "Favoritelist.findAll", query = "SELECT f FROM Favoritelist f"),
-    @NamedQuery(name = "Favoritelist.findByFavId", query = "SELECT f FROM Favoritelist f WHERE f.favId = :favId")})
+    @NamedQuery(name = "Favoritelist.findByFavId", query = "SELECT f FROM Favoritelist f WHERE f.favId = :favId"),
+    @NamedQuery(name = "Favoritelist.findByPostpostid", query = "SELECT f FROM Favoritelist f WHERE f.favoritelistPK.postpostid = :postpostid"),
+    @NamedQuery(name = "Favoritelist.findByUserinfousername", query = "SELECT f FROM Favoritelist f WHERE f.favoritelistPK.userinfousername = :userinfousername")})
 public class Favoritelist implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
+    @EmbeddedId
+    protected FavoritelistPK favoritelistPK;
     @Column(name = "fav_id")
     private Integer favId;
-    @JoinColumn(name = "Post_post_id", referencedColumnName = "post_id")
+    @JoinColumn(name = "Post_post_id", referencedColumnName = "post_id", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Post postpostid;
-    @JoinColumn(name = "User_info_username", referencedColumnName = "username")
+    private Post post;
+    @JoinColumn(name = "User_info_username", referencedColumnName = "username", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private UserInfo userinfousername;
+    private UserInfo userInfo;
 
     public Favoritelist() {
     }
 
-    public Favoritelist(Integer favId) {
-        this.favId = favId;
+    public Favoritelist(FavoritelistPK favoritelistPK) {
+        this.favoritelistPK = favoritelistPK;
+    }
+
+    public Favoritelist(int postpostid, String userinfousername) {
+        this.favoritelistPK = new FavoritelistPK(postpostid, userinfousername);
+    }
+
+    public FavoritelistPK getFavoritelistPK() {
+        return favoritelistPK;
+    }
+
+    public void setFavoritelistPK(FavoritelistPK favoritelistPK) {
+        this.favoritelistPK = favoritelistPK;
     }
 
     public Integer getFavId() {
@@ -56,26 +67,26 @@ public class Favoritelist implements Serializable {
         this.favId = favId;
     }
 
-    public Post getPostpostid() {
-        return postpostid;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPostpostid(Post postpostid) {
-        this.postpostid = postpostid;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
-    public UserInfo getUserinfousername() {
-        return userinfousername;
+    public UserInfo getUserInfo() {
+        return userInfo;
     }
 
-    public void setUserinfousername(UserInfo userinfousername) {
-        this.userinfousername = userinfousername;
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (favId != null ? favId.hashCode() : 0);
+        hash += (favoritelistPK != null ? favoritelistPK.hashCode() : 0);
         return hash;
     }
 
@@ -86,7 +97,7 @@ public class Favoritelist implements Serializable {
             return false;
         }
         Favoritelist other = (Favoritelist) object;
-        if ((this.favId == null && other.favId != null) || (this.favId != null && !this.favId.equals(other.favId))) {
+        if ((this.favoritelistPK == null && other.favoritelistPK != null) || (this.favoritelistPK != null && !this.favoritelistPK.equals(other.favoritelistPK))) {
             return false;
         }
         return true;
@@ -94,7 +105,7 @@ public class Favoritelist implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Favoritelist[ favId=" + favId + " ]";
+        return "model.Favoritelist[ favoritelistPK=" + favoritelistPK + " ]";
     }
     
 }
