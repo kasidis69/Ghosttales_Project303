@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Post;
 import model.UserInfo;
 
@@ -37,13 +38,15 @@ public class profileServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String username = request.getParameter("name");
+        HttpSession session = request.getSession();
+       String username = (String) session.getAttribute("userr");
         
        
        
          response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
+        
         
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();

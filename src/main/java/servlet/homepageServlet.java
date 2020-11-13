@@ -54,6 +54,7 @@ public class homepageServlet extends HttpServlet {
                    HttpSession session = request.getSession();
                 
                session.setAttribute("ps",ps);
+               
                 
                
                request.getRequestDispatcher("/index.jsp").forward(request, response);

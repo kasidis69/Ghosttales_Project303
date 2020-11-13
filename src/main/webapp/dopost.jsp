@@ -69,13 +69,15 @@
   </nav>
 
   <!-- Page Header -->
+  
   <header class="masthead" style="background-image: url('img/s.jpg')">
+      
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>${post.title}</h1>
+            <h1 name="title">${post.title}</h1>
             <!--h2 class="subheading">Problems look mighty small from 150 miles up</h2-->
             <span class="meta">Posted by
             <a href="profile?name=${post.userinfousername.username}"> ${post.userinfousername.username}  </a>
@@ -92,12 +94,17 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             ${post.content}
+          
         </div>
          <a href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> heart  </a>
       </div>
     </div>
   </article>
+            <a href="editpost.jsp" 
+   class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">Edit</a>
 
+            
+</form>
   <hr>
 
   <!-- Footer -->
