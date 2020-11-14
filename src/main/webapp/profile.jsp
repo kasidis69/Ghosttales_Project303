@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Profile</title>
-        <link href="css/style_1.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style_1_1.css" rel="stylesheet" type="text/css"/>
         
         <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -70,13 +70,14 @@ body {
 
 
         <div class="box">  
+            <img class="avatar" src="img/g.png">
                 <h1>Profile</h1>
                 <p>Username : ${user.username}</p>
                 
                 
                 <p>Name :  ${user.firstName} ${user.lastName}  </p>
                 <h1><a href="editprofile.jsp"> Edit Profile </a></h1>
-                <p>Post</p>
+                <p>เรื่องที่คุณเขียน ดังนี้</p>
                 <c:forEach items="${mypost}" var="post" varStatus="vs">
                 <p><a href="getpost?id=${post.postId}">${post.title} </a></p>
                 </c:forEach>

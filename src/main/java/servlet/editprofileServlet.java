@@ -78,7 +78,7 @@ String EDIT4="UPDATE  UserInfo u SET u.lastName=' " + lname + " ' where u.userna
                 System.out.println(fname);
            request.getRequestDispatcher("/logout").forward(request, response);  
               }else {
-            request.setAttribute("Message", "Current Password is not correct");
+            request.setAttribute("Message", "รหัสปัจจุบันของคุณไม่ถูกต้อง");
             request.getRequestDispatcher("editprofile.jsp").forward(request, response);
   //em.persist(user);
   //em.getTransaction().commit();
