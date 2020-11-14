@@ -49,7 +49,7 @@ body {
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="About.jsp">About</a>
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'post.jsp'}">
