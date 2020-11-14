@@ -49,10 +49,10 @@ public class forgotServlet extends HttpServlet {
           if (u != null && u.getFirstName().equals(fname) && u.getLastName().equals(lname)) {
             HttpSession session = request.getSession();
              session.setAttribute("user", u);
-            request.getRequestDispatcher("showpass.jsp").forward(request, response);
+            request.getRequestDispatcher("/showpass.jsp").forward(request, response);
         } else {
             request.setAttribute("Message", "ใส่ข้อมูลไม่ถูกต้อง");
-            request.getRequestDispatcher("forgotpassword.jsp").forward(request, response);
+            request.getRequestDispatcher("/forgotpassword.jsp").forward(request, response);
      
         
         }

@@ -90,9 +90,7 @@
                     Post by : <input type="text" name="username" value="${user.username}" readonly>
 ${Message}
 <input type="submit" value="EDIT">
-<div class="wrapper">
-    <a class="heart" href="#"></a>
-</div>
+
 
 <%--    <a href="editPost" 
                         class="u-border-2 u-border-palette-4-base u-btn u-btn-round u-button-style u-hover-color-4-dark-1 u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">Save Change</a>

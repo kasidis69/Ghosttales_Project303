@@ -77,7 +77,29 @@ public class getpostServlet extends HttpServlet {
         }
          
          
+ String sql2 = "SELECT COUNT(f) FROM Favoritelist f WHERE   f.favoritelistPK.postpostid = :id  ";
+        Query q = em.createQuery(sql2);
+       q.setParameter("id", id);
+      //q.setParameter("username", username);
+        long countt = (long) q.getSingleResult();
+        
+        
+        int count = (int) countt;
+        Post post = em.find(Post.class, id);
+         post.setTotallike(count);
          
+         
+          String update = "UPDATE  Post p SET p.totallike=" + count + " where p.postId="+ id +"";
+            
+          Query q2 = em.createQuery(update);
+          
+            em.getTransaction().begin();
+            //em.persist(post);
+            q2.executeUpdate();
+            em.getTransaction().commit();
+        
+        
+        request.setAttribute("count",count);
          
          
          

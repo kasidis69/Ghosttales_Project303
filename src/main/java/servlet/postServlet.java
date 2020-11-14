@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.Instant;
@@ -28,8 +29,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AddImage;
 import model.Post;
 import model.UserInfo;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -56,8 +61,9 @@ public class postServlet extends HttpServlet {
         EntityManager em = emf.createEntityManager();
      HttpSession session = request.getSession();
      
-      
-     
+    
+    //String file = request.getParameter("file");
+   
       
       String content = request.getParameter("content");
      // String content = "oiadjioajdoiajdiajsi";
@@ -69,12 +75,21 @@ public class postServlet extends HttpServlet {
         
        System.out.println(u.getUsername());
         
-        if(content != null && title !=null) {
+//        if(content != null && title !=null) {
+
+    String sql2 = "SELECT COUNT(p) FROM Post p";
+        Query q = em.createQuery(sql2);
+     
+      
+        long countt = (long)q.getSingleResult();
+        int count = (int) countt+1;
+        
+        
                 Post post = new Post();
      int min = 0;
      int max = 100000;
      int random_int = (int)(Math.random() * (max - min + 1) + min);
-            post.setPostId(random_int);
+            post.setPostId(count);
            post.setTitle(title);
             post.setContent(content);
             post.setCreateTime(java.sql.Date.valueOf(today));
@@ -89,9 +104,13 @@ public class postServlet extends HttpServlet {
             em.getTransaction().begin();
             em.persist(post);
             em.getTransaction().commit();
-             
-            session.setAttribute("show", post);
             
+            
+    
+     
+ 
+            session.setAttribute("show", post);
+            session.setAttribute("num",count);
             
 //            post = em.find(Post.class, random_int);
 //            session.setAttribute("post", post.getContent());
@@ -102,19 +121,18 @@ public class postServlet extends HttpServlet {
 //            post = em.find(Post.class, random_int);
 //            session.setAttribute("day", post.getCreateTime());
             
-        
-        
+      
 
-        request.getRequestDispatcher("/homepage").forward(request, response);
+    request.getRequestDispatcher("/addimage.jsp").forward(request, response);
 
         }
-
- request.setAttribute("Message","กรุณากรอกข้อมูลให้ครบด้วยครับ");
-  request.getRequestDispatcher("/post.jsp").forward(request, response);
-    
-
-        
-        }
+//
+// request.setAttribute("Message","กรุณากรอกข้อมูลให้ครบด้วยครับ");
+//  request.getRequestDispatcher("/post.jsp").forward(request, response);
+//    
+//
+//        
+//        }
 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

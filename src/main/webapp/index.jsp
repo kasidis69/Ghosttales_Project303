@@ -36,33 +36,37 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="index.jsp">Ghosttales</a>
+      <a class="navbar-brand" href="homepage">Ghosttales</a>
+      
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
+        
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <div class="col-6 ">
                     <form action="search" method="POST">
-                        <span  style="color:white"><a> หาเรื่องที่เราอยากอ่าน:</a></span> <input type="text" name="searchParam"
+                        <span  style="color:white"><a> </a></span> <input type="text" name="searchParam"
                                                         minlength="3"
-                                                required/>
-                        <input  type="submit" value="search" /> 
+                                                required  placeholder="search"/>
+                        <!--input  type="submit" value="search"  /--> 
                         <br>
-                        <span  style="color:red">${message}</span>
+                        <span  style="color:red"  >${message}</span>
                     </form>
                 </div>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.jsp">Home</a>
+            <a class="nav-link" href="homepage"">Home</a>
           </li>
           <li class="nav-item">
+
             <a class="nav-link" href="About.jsp">About</a>
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}"  > favoritelist </a>
+
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'post.jsp'}">
@@ -104,7 +108,8 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-          <c:forEach items="${ps}" var="post" varStatus="vs">
+          
+              <c:forEach items="${ps}" var="post" varStatus="vs">
         <div class="post-preview">
             
           <a href="post.html">
@@ -121,7 +126,10 @@
           </a>
           <p class="post-meta">Posted by
             <a href="profile?name=${post.userinfousername.username}">${post.userinfousername.username}  </a>
-            on ${post.createTime}</p>
+            on ${post.createTime}  </p>
+          
+          <p class="post-meta" style="color: #000"> ${post.totallike} Like  </p>
+          
         </div>
         <hr>
         <div class="post-preview">
@@ -130,6 +138,7 @@
    
    
 </c:forEach>
+   
               <!--Man must explore, and this is exploration at its greatest-->
             
               

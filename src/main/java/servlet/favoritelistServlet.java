@@ -63,12 +63,14 @@ public class favoritelistServlet extends HttpServlet {
         for (Favoritelist favoritelist : fa) {
             System.out.println(favoritelist);
         }
-       
+        
+        
         
         if(!fa.isEmpty()){
-            String sql2 =   "DELETE FROM Favoritelist f WHERE f.favoritelistPK.postpostid = :id";
+            String sql2 =   "DELETE FROM Favoritelist f WHERE f.favoritelistPK.postpostid = :id AND f.favoritelistPK.userinfousername = :username";
             Query qry2 =em.createQuery(sql2);
             qry2.setParameter("id", id);
+            qry2.setParameter("username", username);
             
             em.getTransaction().begin();
             qry2.executeUpdate();
@@ -93,24 +95,10 @@ public class favoritelistServlet extends HttpServlet {
 
         session.setAttribute("favorite", fav);
 
-        System.out.println("---------------2--------------");
-        System.out.println(fav.getPost());
-        System.out.println(fav.getUserInfo());
-        System.out.println("---------------2--------------");
+
          
         request.getRequestDispatcher("/getpost").forward(request, response);
          }
-//        for (Favoritelist favoritelist : fa) {
-//            System.out.println(favoritelist.getFavId());
-//        }
-//        System.out.println("---------------1--------------");
-//        System.out.println(id);
-//        System.out.println(username);
-//        System.out.println("---------------1--------------");
-//        if(fa.getPostpostid().getPostId() == id){
-//            request.getRequestDispatcher("/homepage").forward(request, response);
-//}
-
 
     
                 

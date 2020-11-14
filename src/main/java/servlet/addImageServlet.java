@@ -5,25 +5,26 @@
  */
 package servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Post;
+import model.AddImage;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author User
  */
-public class otherpostServlet extends HttpServlet {
+public class addImageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,30 +37,23 @@ public class otherpostServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
-        EntityManager em = emf.createEntityManager();
-         javax.persistence.Query query = em.createNamedQuery("Post.findAll");
-               
-               List<Post> ps2 = query.getResultList();
-                
-                      
-          String sql = "SELECT p FROM Post p ORDER BY p.postId DESC";
-          Query q = em.createQuery(sql);
-          List <Post> ps =q.getResultList();
-                
-          
-                   HttpSession session = request.getSession();
-                
-               session.setAttribute("ps",ps);
-                
-               
-               request.getRequestDispatcher("/index2.jsp").forward(request, response);
-               
-    } 
-    
+        
+        HttpSession session = request.getSession();
+        int num =(int) session.getAttribute("num");
+  String target = "/Users/User/Documents/GitHub/Ghosttales_Project303/src/main/webapp/img/";
+            AddImage add = new AddImage();
+            add.editImages(request,target,num);
+     try{
+           Thread.sleep(1700);
+           
+        }
+         
+        
+catch(InterruptedException ex){
+    Thread.currentThread().interrupt();
+}
+     request.getRequestDispatcher("/homepage").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

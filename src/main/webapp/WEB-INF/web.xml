@@ -40,6 +40,10 @@
         <servlet-name>search</servlet-name>
         <servlet-class>servlet.search</servlet-class>
     </servlet>
+      <servlet>
+        <servlet-name>addImageServlet</servlet-name>
+        <servlet-class>servlet.addImageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homepageServlet</servlet-name>
         <url-pattern>/homepage</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>addImageServlet</servlet-name>
+        <url-pattern>/addImage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

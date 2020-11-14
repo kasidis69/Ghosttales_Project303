@@ -39,15 +39,37 @@
       <a class="navbar-brand" href="index.jsp">Ghosttales</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
+        
+        
         <i class="fas fa-bars"></i>
       </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div class="col-6 ">
+                    <form action="search" method="POST">
+                        <span  style="color:white"><a> </a></span> <input type="text" name="searchParam"
+                                                        minlength="3"
+                                                required  placeholder="search"/>
+                        <!--input  type="submit" value="search"  /--> 
+                        <br>
+                        <span  style="color:red"  >${message}</span>
+                    </form>
+                </div>
+            </li>
+      
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
-          <li class="nav-item">
+   <li class="nav-item">
+
             <a class="nav-link" href="About.jsp">About</a>
+</li>
+<li class="nav-item">
+            <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}" > favoritelist </a>
+
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'post.jsp'}">
@@ -106,6 +128,7 @@
           <p class="post-meta">Posted by
             <a href="profile?name=${post.userinfousername.username}">${post.userinfousername.username}  </a>
             on ${post.createTime}</p>
+          <p class="post-meta" style="color: #000"> ${post.totallike} Like  </p>
         </div>
         <hr>
         <div class="post-preview">

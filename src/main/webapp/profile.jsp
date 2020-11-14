@@ -47,7 +47,12 @@ body {
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
           <li class="nav-item">
+
             <a class="nav-link" href="About.jsp">About</a>
+</li>
+<li class="nav-item">
+            <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}" > favoritelist </a>
+
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'post.jsp'}">
@@ -72,10 +77,10 @@ body {
         <div class="box">  
             <img class="avatar" src="img/g.png">
                 <h1>Profile</h1>
-                <p>Username : ${user.username}</p>
+                <p>Username : ${userpro.username}</p>
                 
                 
-                <p>Name :  ${user.firstName} ${user.lastName}  </p>
+                <p>Name :  ${userpro.firstName} ${userpro.lastName}  </p>
                 <h1><a href="editprofile.jsp"> Edit Profile </a></h1>
                 <p>เรื่องที่คุณเขียน ดังนี้</p>
                 <c:forEach items="${mypost}" var="post" varStatus="vs">

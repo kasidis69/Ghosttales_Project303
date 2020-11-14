@@ -12,9 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <c:forEach items="${myfavorite}" var="my" varStatus="vs">
-                <p><a href="getpost?id=${my.post.postId}">${my.post.title} Post by ${my.post.userinfousername.username}  </a></p>
+        <p> มีทั้งหมด ${count} Favorite List</p>
+        <c:forEach items="${myfavorite}" var="my" varStatus="vs" >
+                <p><a href="getpost?id=${my.post.postId}">${my.post.title} Post by ${my.post.userinfousername.username} </a></p>
                 </c:forEach>
     </body>
 </html>

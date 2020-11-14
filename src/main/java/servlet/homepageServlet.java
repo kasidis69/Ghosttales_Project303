@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,21 +44,25 @@ public class homepageServlet extends HttpServlet {
          EntityManager em = emf.createEntityManager();
          javax.persistence.Query query = em.createNamedQuery("Post.findAll");
                
-               List<Post> ps = query.getResultList().subList(0,3);
-                
-//                for (Post p : ps){
-//               System.out.println(p.getTitle());
-//          
-//              }
-                
+          String sql = "SELECT p FROM Post p ORDER BY p.postId DESC";
+          Query q = em.createQuery(sql);
           
-                   HttpSession session = request.getSession();
+          if(q.getResultList().isEmpty()){
+               HttpSession session = request.getSession();
+                 List<Post> ps2 = q.getResultList();
+                   session.setAttribute("ps",ps2);
+                   request.getRequestDispatcher("/index.jsp").forward(request, response);
+               }else{
+              List <Post> ps =q.getResultList().subList(0,3);
+              HttpSession session = request.getSession();
                 
                session.setAttribute("ps",ps);
-               
-                
-               
                request.getRequestDispatcher("/index.jsp").forward(request, response);
+          }
+          
+
+ 
+          
                
     } 
     

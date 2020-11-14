@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Favoritelist;
 import model.Post;
 import model.UserInfo;
@@ -37,10 +38,11 @@ public class getfavoritelist extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+ //     HttpSession session = request.getSession();
          String username = request.getParameter("name");
         
-       
+//           String idz = request.getParameter("id");
+//           int id =Integer.parseInt(idz);
        
          response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -67,6 +69,19 @@ public class getfavoritelist extends HttpServlet {
           
               }
          
+         
+         
+        String sql2 = "SELECT COUNT(f) FROM Favoritelist f WHERE   f.favoritelistPK.userinfousername = :username  ";
+        Query q = em.createQuery(sql2);
+     //   q.setParameter("id", id);
+      q.setParameter("username", username);
+        long count = (long)q.getSingleResult();
+        
+        
+        
+        
+        request.setAttribute("count",count);
+        
          
     
          

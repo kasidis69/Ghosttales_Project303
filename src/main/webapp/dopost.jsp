@@ -15,7 +15,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Clean Blog - Start Bootstrap Theme</title>
+  <title>Post</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,7 +35,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="index.jsp">Ghosttales</a>
+      <a class="navbar-brand" href="homepage">Ghosttales</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -43,10 +43,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.jsp">Home</a>
+            <a class="nav-link" href="homepage">Home</a>
           </li>
           <li class="nav-item">
+
             <a class="nav-link" href="About.jsp">About</a>
+</li>
+<li class="nav-item">
+            <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}" > favoritelist </a>
+
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'post.jsp'}">
@@ -70,7 +75,7 @@
 
   <!-- Page Header -->
   
-  <header class="masthead" style="background-image: url('img/s.jpg')">
+  <header class="masthead" style="background-image: url('img/${post.postId}.jpg')">
       
     <div class="overlay"></div>
     <div class="container">
@@ -87,17 +92,27 @@
       </div>
     </div>
   </header>
-
+          
   <!-- Post Content -->
   <article>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
             ${post.content}
-          
+            <br>
+            <img src="img/${post.postId}.jpg" width="800" height="400"/>
+            <br>
+          <a  href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> <img src ="img/${follow? 'heart3.png':'heart1.png'}" width="20"/>  ${count}</a> 
         </div>
-         <a href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> <img src ="img/${follow? 'heart2.jpg':'heart1.png'}" width="20"/></a>
+            
+            <div></div>
+         
+
+          
+         
+         
       </div>
+         
     </div>
   </article>
             <a href="editpost.jsp" 

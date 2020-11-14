@@ -38,12 +38,7 @@
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
           <li class="nav-item">
-
-            <a class="nav-link" href="About.jsp">About</a>
-</li>
-<li class="nav-item">
             <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}" > favoritelist </a>
-
           </li>
           <li class="nav-item">
             <a href="${user==null ?'':'post.jsp'}">
@@ -82,25 +77,30 @@
         <h1>POST !!</h1>
 
         <label for="content">Post your story here:</label>
-        <input type="text" name="title" id="title" placeholder="title"  required />
+        <input type="text" name="title" id="title" placeholder="title" value="${show.title}"  readonly />
 
 
-        <textarea placeholder="content" id="content" name="content" rows="5" cols="150" required>
-
+        <textarea placeholder="content" id="content" name="content"  rows="5" cols="150" readonly>
+${show.content}
   
   </textarea>
 <br>
 Post by : <input type="text" name="username" value="${user.username}" readonly>
-${Message}
+บันทึกข้อมูลสำเร็จ
 <!--input type="file" name="file"/-->
   
 
 <br>
-<input type="submit" value="บันทึกข้อมูล" />
+<!--input type="submit" value="บันทึกข้อมูล" /-->
 </form>
-<!--form action ="postServlet" method="POST" enctype="multipart/form-data"  >
+
+
+<form action ="addImage" method="POST" enctype="multipart/form-data"  >
+    <br>
+    สามารถเพิ่มรูปภาพได้ข้างล่างนี้!!!
+    <br>
     <input type="file" name="file"/>
-    <!--input type="submit" value="ส่ง" /-->
+    <input type="submit" value="submit" />
 </form>
     </body>
 </html>

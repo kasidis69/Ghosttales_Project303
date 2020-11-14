@@ -46,8 +46,13 @@ body {
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
-          <li class="nav-item">
+  <li class="nav-item">
+
             <a class="nav-link" href="About.jsp">About</a>
+</li>
+<li class="nav-item">
+            <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}" > favoritelist </a>
+
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'post.jsp'}">

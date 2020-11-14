@@ -61,7 +61,7 @@ public class search extends HttpServlet {
                List<Post> rs = qry.getResultList();
         request.setAttribute("title", rs);
          if(rs.isEmpty()){
-               request.setAttribute("message","ไม่มีชื่อเรื่องนี้" );
+               request.setAttribute("message","ไม่มีเรื่องนี้" );
            request.getRequestDispatcher("/index.jsp").forward(request, response);
           }
         request.getRequestDispatcher("/showsearch.jsp").forward(request, response);

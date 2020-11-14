@@ -39,7 +39,7 @@ public class profileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-       String username = (String) session.getAttribute("userr");
+       String username = request.getParameter("name");
         
        
        
@@ -66,7 +66,9 @@ public class profileServlet extends HttpServlet {
          javax.persistence.Query query = em.createNamedQuery("UserInfo.findByUsername");
          query.setParameter("username", username);
          UserInfo us =  (UserInfo) query.getSingleResult();
-         request.setAttribute("user", us);
+         request.setAttribute("userpro", us);
+         
+         session.getAttribute("user");
       
          
          
