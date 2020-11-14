@@ -89,14 +89,15 @@
                     </textarea>
                     Post by : <input type="text" name="username" value="${user.username}" readonly>
 ${Message}
-<input type="submit" value="EDIT">
+<input type="submit" name="action" value="EDIT">
+<input type="submit" name="action" value="DELETE">
 
 
 <%--    <a href="editPost" 
                         class="u-border-2 u-border-palette-4-base u-btn u-btn-round u-button-style u-hover-color-4-dark-1 u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">Save Change</a>
 --%>
-<%--    <a href="editpost.jsp" 
-class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">Cancel</a> --%>
+  <a href="getpost?id=${post.postId}" 
+class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">Cancel</a> 
                 </div>
             </div>
         </form>

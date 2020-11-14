@@ -44,38 +44,50 @@ public class editPostServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
-
+        String action = request.getParameter("action");
         HttpSession session = request.getSession();
 
-        String postid =  request.getParameter("id");
-        System.out.println("1........."+postid);
+        String postid = request.getParameter("id");
+
         int post_id = Integer.parseInt(postid);
-        System.out.println("---------------1"+post_id);
         String username = (String) session.getAttribute("userr");
         UserInfo user = em.find(UserInfo.class, username);
-        System.out.println("--------------------2"+user);
         String new_title = request.getParameter("title");
-        System.out.println("-------------3"+new_title);
         String new_content = request.getParameter("content");
         LocalDate today = LocalDate.now();
-        System.out.println("--------------------4"+new_content);
-if(user!=null){
-        String EDIT = "UPDATE  Post p SET p.title=' " + new_title + " ' where p.postId="+ post_id +"";
-        String EDIT2 = "UPDATE  Post p SET p.content=' " + new_content + " ' where p.postId=" + post_id + "";
+
+        //--------------Edit------------
+        if ("EDIT".equals(action)) {
+            String EDIT = "UPDATE  Post p SET p.title=' " + new_title + " ' where p.postId=" + post_id + "";
+            String EDIT2 = "UPDATE  Post p SET p.content=' " + new_content + " ' where p.postId=" + post_id + "";
 //        String EDIT3 = "UPDATE  Post p SET p.updatetime=" + today + " where p.postId=" + post_id + "";
 
-        Query q = em.createQuery(EDIT);
-        Query q2 = em.createQuery(EDIT2);
+            Query q = em.createQuery(EDIT);
+            Query q2 = em.createQuery(EDIT2);
 //        Query q3 = em.createQuery(EDIT3);
 
-        em.getTransaction().begin();
-        q.executeUpdate();
-        q2.executeUpdate();
+            em.getTransaction().begin();
+            q.executeUpdate();
+            q2.executeUpdate();
 //        q3.executeUpdate();
-        em.getTransaction().commit();
-         request.getRequestDispatcher("/profile").forward(request, response);
-}
-       
+            em.getTransaction().commit();
+
+            request.getRequestDispatcher("/profile").forward(request, response);
+
+            //------------Delete--------------   
+        } else  {
+            String DELETE = "DELETE FROM Post p WHERE p.postId =" +post_id+ "";
+
+            Query q = em.createQuery(DELETE);
+
+            em.getTransaction().begin();
+            q.executeUpdate();
+            em.getTransaction().commit();
+
+            request.getRequestDispatcher("/homepage").forward(request, response);
+
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -104,7 +116,7 @@ if(user!=null){
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         processRequest(request, response);
+        processRequest(request, response);
 
     }
 

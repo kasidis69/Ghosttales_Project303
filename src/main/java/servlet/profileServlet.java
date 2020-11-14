@@ -39,7 +39,7 @@ public class profileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-       String username = request.getParameter("name");
+       String username = (String) session.getAttribute("userr");
         
        
        

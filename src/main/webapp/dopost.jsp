@@ -86,7 +86,10 @@
             <!--h2 class="subheading">Problems look mighty small from 150 miles up</h2-->
             <span class="meta">Posted by
             <a href="profile?name=${post.userinfousername.username}"> ${post.userinfousername.username}  </a>
-            on ${post.createTime}</span>
+            on ${post.createTime} <br/><br/>
+            <a href="${user.username==post.userinfousername.username ?'editpost.jsp':''}" style="color: #b21f2d" />
+            ${user.username==post.userinfousername.username ?'Edit <img src ="img/Edit-01-512.png" width="20"/>':''}</a>
+            </span>
           </div>
         </div>
       </div>
@@ -103,22 +106,8 @@
             <img src="img/${post.postId}.jpg" width="800" height="400"/>
             <br>
           <a  href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> <img src ="img/${follow? 'heart3.png':'heart1.png'}" width="20"/>  ${count}</a> 
-        </div>
-            
-            <div></div>
-         
-
-          
-         
-         
-      </div>
-         
-    </div>
-  </article>
-            <a href="editpost.jsp" 
-   class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-body-color u-text-hover-white u-btn-1">Edit</a>
-
-            
+        </div>     </div>
+           </div></article>                  
 </form>
   <hr>
 
