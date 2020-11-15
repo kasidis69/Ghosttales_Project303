@@ -36,7 +36,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Post.findByPostId", query = "SELECT p FROM Post p WHERE p.postId = :postId"),
     @NamedQuery(name = "Post.findByCreateTime", query = "SELECT p FROM Post p WHERE p.createTime = :createTime"),
     @NamedQuery(name = "Post.findByTitle", query = "SELECT p FROM Post p WHERE p.title = :title"),
-    @NamedQuery(name = "Post.findByTotaldislike", query = "SELECT p FROM Post p WHERE p.totaldislike = :totaldislike"),
+    @NamedQuery(name = "Post.findByTotalcomment", query = "SELECT p FROM Post p WHERE p.totalcomment = :totalcomment"),
     @NamedQuery(name = "Post.findByTotallike", query = "SELECT p FROM Post p WHERE p.totallike = :totallike"),
     @NamedQuery(name = "Post.findByUpdateTime", query = "SELECT p FROM Post p WHERE p.updateTime = :updateTime")})
 public class Post implements Serializable {
@@ -57,8 +57,8 @@ public class Post implements Serializable {
     @Size(max = 255)
     @Column(name = "title")
     private String title;
-    @Column(name = "totaldislike")
-    private Integer totaldislike;
+    @Column(name = "totalcomment")
+    private Integer totalcomment;
     @Column(name = "totallike")
     private Integer totallike;
     @Column(name = "update_time")
@@ -69,6 +69,8 @@ public class Post implements Serializable {
     @JoinColumn(name = "User_info_username", referencedColumnName = "username")
     @ManyToOne
     private UserInfo userinfousername;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<Comment> commentList;
 
     public Post() {
     }
@@ -109,12 +111,12 @@ public class Post implements Serializable {
         this.title = title;
     }
 
-    public Integer getTotaldislike() {
-        return totaldislike;
+    public Integer getTotalcomment() {
+        return totalcomment;
     }
 
-    public void setTotaldislike(Integer totaldislike) {
-        this.totaldislike = totaldislike;
+    public void setTotalcomment(Integer totalcomment) {
+        this.totalcomment = totalcomment;
     }
 
     public Integer getTotallike() {
@@ -147,6 +149,14 @@ public class Post implements Serializable {
 
     public void setUserinfousername(UserInfo userinfousername) {
         this.userinfousername = userinfousername;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     @Override

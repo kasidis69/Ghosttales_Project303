@@ -414,7 +414,7 @@
     <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="index.jsp">Ghosttales</a>
+      <a class="navbar-brand" href="Homepage.html">Ghosttales</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -425,7 +425,14 @@
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="mostpop"">mostpopular</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="About.jsp">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}"  > favoritelist </a>
+
           </li>
           <li class="nav-item">
             <a href="${user==null ?'login.jsp':'post.jsp'}">

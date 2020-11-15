@@ -53,6 +53,8 @@ public class UserInfo implements Serializable {
     private List<Favoritelist> favoritelistList;
     @OneToMany(mappedBy = "userinfousername")
     private List<Post> postList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userInfo")
+    private List<Comment> commentList;
 
     public UserInfo() {
     }
@@ -107,6 +109,14 @@ public class UserInfo implements Serializable {
 
     public void setPostList(List<Post> postList) {
         this.postList = postList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     @Override

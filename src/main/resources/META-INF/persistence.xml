@@ -4,6 +4,7 @@
     <class>model.Favoritelist</class>
     <class>model.UserInfo</class>
     <class>model.Post</class>
+    <class>model.Comment</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ghosttales303?useSSL=false"/>

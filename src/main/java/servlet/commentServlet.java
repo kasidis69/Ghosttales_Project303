@@ -7,7 +7,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.time.LocalDate;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -17,9 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Favoritelist;
-import model.FavoritelistPK;
-
+import model.Comment;
+import model.CommentPK;
 import model.Post;
 import model.UserInfo;
 
@@ -27,7 +26,7 @@ import model.UserInfo;
  *
  * @author User
  */
-public class favoritelistServlet extends HttpServlet {
+public class commentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,71 +40,75 @@ public class favoritelistServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
-        EntityManager em = emf.createEntityManager();
-        HttpSession session = request.getSession();
-
-        String idpost = request.getParameter("id");
-        String username = request.getParameter("username");
-        int id = Integer.parseInt(idpost);
-        Post post = em.find(Post.class, id);
-        UserInfo us = em.find(UserInfo.class, username);
-//        Favoritelist fa = em.find(Favoritelist.class,id);
-        String sql= "SELECT f FROM Favoritelist f WHERE f.favoritelistPK.postpostid = :id AND f.favoritelistPK.userinfousername = :username" ; 
-        Query qry =em.createQuery(sql);
-        qry.setParameter("id", id);
-         qry.setParameter("username", username);
-        List  <Favoritelist> fa =   qry.getResultList();
-        
-        for (Favoritelist favoritelist : fa) {
-            System.out.println(favoritelist);
-        }
-        
-        
-        
-        if(!fa.isEmpty()){
-            String sql2 =   "DELETE FROM Favoritelist f WHERE f.favoritelistPK.postpostid = :id AND f.favoritelistPK.userinfousername = :username";
-            Query qry2 =em.createQuery(sql2);
-            qry2.setParameter("id", id);
-            qry2.setParameter("username", username);
-            
-            em.getTransaction().begin();
-            qry2.executeUpdate();
+         request.setCharacterEncoding("UTF-8");
+          EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
+          EntityManager em = emf.createEntityManager();
+          HttpSession session = request.getSession();
+          
+          
+          String comment = request.getParameter("comment");
+           int id =(int) session.getAttribute("postid");
+        //   int id = Integer.parseInt(idpost);
+          Post post = em.find(Post.class, id);
+          String username = (String) session.getAttribute("userr");
+          
+          System.out.println(username);
+          
+          
+          LocalDate today = LocalDate.now();
+          
+//          String sql = "SELECT COUNT(c) FROM Comment c WHERE c.commentPK.postpostid = :postpostid";
+//          Query q = em.createQuery(sql);
+//          
+//           long countt = (long)q.getSingleResult();
+//           int count1 = (int) countt;
+           
+          String sql2= "SELECT COUNT(c) FROM Comment c";
+          Query q2 = em.createQuery(sql2);
+          
+           long countt2 = (long)q2.getSingleResult();
+           int count2 = (int) countt2+1;
+           System.out.println("--------------*------------------");
+           System.out.println(username);
+           
+           CommentPK cmpk = new CommentPK();
+            cmpk.setCommentId(count2);
+           cmpk.setPostpostid(id);
+      
+         
+           
+           cmpk.setComment(comment);
+           cmpk.setCreateTime(java.sql.Date.valueOf(today));
+           Comment cm = new Comment();
+          cm.setCommentPK(cmpk);
+           
+         
+           System.out.println(comment);
+          
+           
+                    if(username == null){
+              String username2 = "Guest";
+              cmpk.setUserinfousername(username2);
+               UserInfo u = em.find(UserInfo.class, username2);
+           cm.setUserInfo(u);
+          }else{
+                   cmpk.setUserinfousername(username);
+                   UserInfo u = em.find(UserInfo.class, username);
+                  cm.setUserInfo(u);
+               }
+           
+           cm.setPost(post);
+           
+           
+             em.getTransaction().begin();
+            em.persist(cm);
             em.getTransaction().commit();
             
-              request.getRequestDispatcher("/getpost").forward(request, response);
-    } else{
-                   
-         Favoritelist fav = new Favoritelist(id, username);
-        
-        int min = 0;
-        int max = 100000;
-        int random_int = (int) (Math.random() * (max - min + 1) + min);
-        
-        fav.setPost(post);
-        fav.setUserInfo(us);
-        
-
-        em.getTransaction().begin();
-        em.persist(fav);
-        em.getTransaction().commit();
-
-        session.setAttribute("favorite", fav);
-
-
-         
-        request.getRequestDispatcher("/getpost").forward(request, response);
-         }
-
-    
-                
-      
- 
-
-
+           
+            session.setAttribute("comment", cm);
+            
+            request.getRequestDispatcher("/homepage").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

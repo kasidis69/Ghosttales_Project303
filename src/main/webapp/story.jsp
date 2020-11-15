@@ -57,6 +57,9 @@
             <a class="nav-link" href="index.html">Home</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="mostpop"">mostpopular</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="About.jsp">About</a>
           </li>
           <li class="nav-item">

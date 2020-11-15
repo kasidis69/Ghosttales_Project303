@@ -1,8 +1,9 @@
 <%-- 
-    Document   : dopost
-    Created on : Nov 1, 2020, 12:27:21 AM
+    Document   : index
+    Created on : Oct 31, 2020, 11:41:05 PM
     Author     : User
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Post</title>
+  <title>Ghosttales</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,15 +36,29 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="homepage">Ghosttales</a>
+      <a class="navbar-brand" href="Homepage.html">Ghosttales</a>
+      
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
+        
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <div class="col-6 ">
+                    <form action="search" method="POST">
+                        <span  style="color:white"><a> </a></span> <input type="text" name="searchParam"
+                                                        minlength="3"
+                                                required  placeholder="search"/>
+                        <!--input  type="submit" value="search"  /--> 
+                        <br>
+                        <span  style="color:red"  >${message}</span>
+                    </form>
+                </div>
+            </li>
           <li class="nav-item">
-            <a class="nav-link" href="homepage">Home</a>
+            <a class="nav-link" href="homepage"">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="mostpop"">mostpopular</a>
@@ -51,9 +66,9 @@
           <li class="nav-item">
 
             <a class="nav-link" href="About.jsp">About</a>
-</li>
-<li class="nav-item">
-            <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}" > favoritelist </a>
+          </li>
+          <li class="nav-item">
+            <a href="${user==null ?'login.jsp':'getfavoritelist'}?name=${user.username}"  > favoritelist </a>
 
           </li>
           <li class="nav-item">
@@ -64,7 +79,6 @@
             <a href="${user==null ?'login':'logout'}">
                  ${user==null ?'Login' : 'Logout'}
         </a>
-          </li>
           </li>
                    <a  style="color: white">  ${user==null ?'Guest':''}</a>
           <li class="nav-item">
@@ -77,115 +91,119 @@
   </nav>
 
   <!-- Page Header -->
-  
-  <header class="masthead" style="background-image: url('img/${post.postId}.jpg')">
-      
+  <header class="masthead" style="background-image: url('img/s.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1 name="title">${post.title}</h1>
-            <!--h2 class="subheading">Problems look mighty small from 150 miles up</h2-->
-            <span class="meta">Posted by
-            <a href="profile?name=${post.userinfousername.username}"> ${post.userinfousername.username}  </a>
-            on ${post.createTime} <br/><br/>
-            <a href="${user.username==post.userinfousername.username ?'editpost.jsp':''}" style="color: #b21f2d" />
-            ${user.username==post.userinfousername.username ?'Edit <img src ="img/Edit-01-512.png" width="20"/>':''}</a>
-            </span>
+          <div class="site-heading">
+            <h1>Ghosttales</h1>
+            <span class="subheading"> รวมเรื่องเล่าสุดหลอนจากทั่วทุกมุมโลก !!!</span>
           </div>
         </div>
       </div>
     </div>
   </header>
+  
+                 
+  <!-- Main Content -->
+   
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
           
-  <!-- Post Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            <img src="img/${post.postId}.jpg" width="800" height="400"/>
-               <br>
-               <a  href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> <img src ="img/${follow? 'heart3.png':'heart1.png'}" width="20"/>  ${count}</a> 
-               <br>
-               <br>
-            ${post.content}
-         
+          <h2><u>Popular</u></h2>
+          <br>
+          <br>
+          
+          
+              <c:forEach items="${ps}" var="post" varStatus="vs">
+        <div class="post-preview">
             
-            <br>
-            
-            <br>
-<h6 class="post-title" >
-                
-                 <u>comment (${num})</u>
-                 </h6>
-                 <hr>
-                 
-                 
-        <c:forEach items="${cm}" var="cm" varStatus="vs">
-      
-      <div class="post-preview">
-        
-
-         
-        
-       
-       
-            <h6 class="post-title" >
+          <a href="post.html">
+            <h2 class="post-title" >
                 
                  
  
-               username : <a href="profile?name=${cm.commentPK.userinfousername}">${cm.commentPK.userinfousername}</a>
-         
+    
+        <a href="getpost?id=${post.postId}" > ${post.title}  </a>
+        <a href="getpost?id=${post.postId}" > <img src="img/${post.postId}.jpg" width="650" height="300"/> </a>
+        </h2>
         
-        </h6>
-        
-    <h6 class="post-subtitle">
-              ${cm.commentPK.comment} 
-            </h6>
+    <h3 class="post-subtitle">
+              <!--Problems look mighty small from 150 miles up-->
+            </h3>
           </a>
-          <p class="post-meta">
-                 on ${cm.commentPK.createTime}
-             </p>
-          <hr>
-          <!--p class="post-meta" style="color: #000"> ${post.totallike} Like  </p-->
+          <p class="post-meta">Posted by
+            <a href="profile?name=${post.userinfousername.username}">${post.userinfousername.username}  </a>
+            on ${post.createTime}  </p>
+          
+          <p class="post-meta" style="color: #000">  Like(${post.totallike})        Comment(${post.totalcomment})  </p>
           
         </div>
-         </c:forEach>
-                 
-                      <form action="comment" method="POST">
-            <input type="text"  name="comment" placeholder="comment" required>
-            <!--input type="submit" value="comment"--> 
-        </form>
+        <hr>
+        <div class="post-preview">
+          <a href="post.html">
+   </tr> 
+   
+   
+</c:forEach>
+   
+              <!--Man must explore, and this is exploration at its greatest-->
             
-        </div>     
-            
-            
-      </div>
-           
-            
-            
-           </div>
-  </article>                  
-
-       
-          
-          
-     
+              
+              
+              
+          <!--  
+            <h2 class="post-title">
+              I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+            </h2>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">Start Bootstrap</a>
+            on September 18, 2019</p>
         </div>
-        
-            <div></div>
-         
-
+        <hr>
+        <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              Science has not yet mastered prophecy
+            </h2>
+            <h3 class="post-subtitle">
+              We predict too much for the next year and yet far too little for the next ten.
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">Start Bootstrap</a>
+            on August 24, 2019</p>
+        </div>
+        <hr>
+        <div class="post-preview">
+          <a href="post.html">
+            <h2 class="post-title">
+              Failure is not an option
+            </h2>
+            <h3 class="post-subtitle">
+              Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">Start Bootstrap</a>
+            on July 8, 2019</p>
+        </div>
+        <hr>
+          -->
           
-         
-         
+          
+          
+        <!-- Pager -->
+        <div class="clearfix">
+          <!--a class="btn btn-primary float-right" href="otherpost">Show more  &#9661;</a-->
+        </div>
       </div>
-         
     </div>
-  </article>
-            
-</form>
+  </div>
+
   <hr>
 
   <!-- Footer -->

@@ -23,7 +23,7 @@ import model.Post;
  *
  * @author User
  */
-public class homepageServlet extends HttpServlet {
+public class mostpopServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,36 +36,28 @@ public class homepageServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
+ response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
          EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
-         EntityManager em = emf.createEntityManager();
-         javax.persistence.Query query = em.createNamedQuery("Post.findAll");
+        EntityManager em = emf.createEntityManager();
+         
                
-          String sql = "SELECT p FROM Post p ORDER BY p.postId DESC";
+               
+                
+                      
+          String sql = "SELECT p FROM Post p ORDER BY p.totallike DESC";
           Query q = em.createQuery(sql);
+          List <Post> ps =q.getResultList();
+                
           
-         {
-              List <Post> ps =q.getResultList().subList(0,3);
-              HttpSession session = request.getSession();
+                   HttpSession session = request.getSession();
                 
                session.setAttribute("ps",ps);
-               request.getRequestDispatcher("/index.jsp").forward(request, response);
-          }
-          
-//String sql4 = "SELECT COUNT(c) FROM Comment c WHERE c.commentPK.postpostid = :id  " ; 
-//        Query qry4 =em.createQuery(sql4);
-//        qry4.setParameter("id",id);
-//        long numm =  (long) qry4.getSingleResult();
-//        
-//        int num = (int) numm;
- 
-          
+                
                
-    } 
-    
+               request.getRequestDispatcher("/mostpop.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

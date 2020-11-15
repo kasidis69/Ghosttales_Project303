@@ -40,9 +40,17 @@
         <servlet-name>search</servlet-name>
         <servlet-class>servlet.search</servlet-class>
     </servlet>
-      <servlet>
+    <servlet>
         <servlet-name>addImageServlet</servlet-name>
         <servlet-class>servlet.addImageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>mostpopServlet</servlet-name>
+        <servlet-class>servlet.mostpopServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>commentServlet</servlet-name>
+        <servlet-class>servlet.commentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>homepageServlet</servlet-name>
@@ -84,9 +92,17 @@
         <servlet-name>search</servlet-name>
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>addImageServlet</servlet-name>
         <url-pattern>/addImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>mostpopServlet</servlet-name>
+        <url-pattern>/mostpop</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>commentServlet</servlet-name>
+        <url-pattern>/comment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

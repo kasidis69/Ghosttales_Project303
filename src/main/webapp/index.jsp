@@ -36,7 +36,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="homepage">Ghosttales</a>
+      <a class="navbar-brand" href="Homepage.html">Ghosttales</a>
       
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
@@ -59,6 +59,9 @@
             </li>
           <li class="nav-item">
             <a class="nav-link" href="homepage"">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="mostpop"">Mostpopular</a>
           </li>
           <li class="nav-item">
 
@@ -108,7 +111,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-          
+          <h2><u>All Story</u></h2>
+          <br>
+          <br>
               <c:forEach items="${ps}" var="post" varStatus="vs">
         <div class="post-preview">
             
@@ -118,8 +123,10 @@
                  
  
     
-        <a href="getpost?id=${post.postId}" > ${post.title}  </a>
+        <a href="getpost?id=${post.postId}" > ${post.title} </a>
+        <a href="getpost?id=${post.postId}" > <img src="img/${post.postId}.jpg" width="650" height="300"/> </a>
         </h2>
+        
     <h3 class="post-subtitle">
               <!--Problems look mighty small from 150 miles up-->
             </h3>
@@ -128,7 +135,7 @@
             <a href="profile?name=${post.userinfousername.username}">${post.userinfousername.username}  </a>
             on ${post.createTime}  </p>
           
-          <p class="post-meta" style="color: #000"> ${post.totallike} Like  </p>
+          <p class="post-meta" style="color: #000">  Like(${post.totallike})        Comment(${post.totalcomment})  </p>
           
         </div>
         <hr>
@@ -138,7 +145,7 @@
    
    
 </c:forEach>
-   
+    
               <!--Man must explore, and this is exploration at its greatest-->
             
               
@@ -240,6 +247,9 @@
   <!-- Custom scripts for this template -->
   <script src="js/clean-blog.min.js"></script>
 
+  
+  
+  
 </body>
 
 </html>

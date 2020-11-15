@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Comment;
 import model.Favoritelist;
 import model.Post;
 
@@ -42,7 +43,6 @@ public class getpostServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-
     HttpSession session = request.getSession();
 
       String hrefname = request.getParameter("id");
@@ -97,11 +97,56 @@ public class getpostServlet extends HttpServlet {
             //em.persist(post);
             q2.executeUpdate();
             em.getTransaction().commit();
+            
+            
+         String sql3 = "SELECT c FROM Comment c WHERE c.commentPK.postpostid = :id ORDER BY c.commentPK.commentId DESC " ; 
+        Query qry3 =em.createQuery(sql3);
+        qry3.setParameter("id",id);
+        List  <Comment> cm =   qry3.getResultList();
+        
+        String sql4 = "SELECT COUNT(c) FROM Comment c WHERE c.commentPK.postpostid = :id  " ; 
+        Query qry4 =em.createQuery(sql4);
+        qry4.setParameter("id",id);
+        long numm =  (long) qry4.getSingleResult();
+        
+        int num = (int) numm;
         
         
+//         String sql5 = "SELECT c FROM Comment c WHERE c.commentPK.postpostid = :id ";
+//        Query q5 = em.createQuery(sql5);
+//       q5.setParameter("id", id);
+//      //q.setParameter("username", username);
+//        long countz = (long) q5.getSingleResult();
+//        
+//        
+//        int countc = (int) countz;
+       
+         post.setTotalcomment(num);
+         
+         
+          String update2 = "UPDATE  Post p SET p.totalcomment=" + num + " where p.postId="+ id +"";
+            
+          Query q6 = em.createQuery(update2);
+          
+            em.getTransaction().begin();
+            //em.persist(post);
+            q6.executeUpdate();
+            em.getTransaction().commit();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        request.setAttribute("num", num);
         request.setAttribute("count",count);
          
-         
+         session.setAttribute("cm",cm);
          
          
          

@@ -77,25 +77,29 @@ public class postServlet extends HttpServlet {
         
 //        if(content != null && title !=null) {
 
-    String sql2 = "SELECT COUNT(p) FROM Post p";
+      // String sql2 = "SELECT COUNT(p) FROM Post p";
+    String sql2 ="SELECT p.postId FROM Post p";
         Query q = em.createQuery(sql2);
      
+        List <Post>ps =q.getResultList() ;
+        
+        int num =    ps.size();
+        int countt = (int) q.getResultList().get(num-1);
+        int count = countt+1;
       
-        long countt = (long)q.getSingleResult();
-        int count = (int) countt+1;
+//        long countt = (long)q.getSingleResult();
+//        int count = (int) countt+1;
         
         
-                Post post = new Post();
-     int min = 0;
-     int max = 100000;
-     int random_int = (int)(Math.random() * (max - min + 1) + min);
+             Post post = new Post();
+    
             post.setPostId(count);
            post.setTitle(title);
             post.setContent(content);
             post.setCreateTime(java.sql.Date.valueOf(today));
             post.setUpdateTime(null);
             post.setTotallike(0);
-            post.setTotaldislike(0);
+            post.setTotalcomment(0);
             post.setUserinfousername(u);
             System.out.println("-----2-----");
             
