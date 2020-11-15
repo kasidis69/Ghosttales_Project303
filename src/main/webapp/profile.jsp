@@ -81,7 +81,8 @@
             Username : ${userpro.username}<br><br>
             Name :  ${userpro.firstName} ${userpro.lastName}
             <br><br>
-            <a href="editprofile.jsp" style="color: #ffffff"> Edit Profile </a>
+            <a href="${user.username==userpro.username ?'editprofile.jsp':''}" style="color: #ffffff"> 
+             ${user.username==userpro.username ?'Edit Profile ':''}</a>
             </span>
           </div>
         </div>
