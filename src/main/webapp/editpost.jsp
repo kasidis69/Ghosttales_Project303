@@ -11,12 +11,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
-            .center {
-                margin: auto;
+            #content{
+                resize: none;
+            }
+            
+            div.center{
+                background-image: url('img/editpost.jpg')
+            }
+            body{
+                background-image: url('img/editpost_bg.gif')
+            }
+            .center {margin: auto;
                 height: 100%;
                 width: 70%;
-                border: 3px solid #73AD21;
+                
                 padding: 100px;
+                
             }
             .u-section-1 .u-sheet-1 {
                 min-height: 500px;
@@ -78,8 +88,8 @@
         <form action="editPost" method="POST">
             <div class="center">
                 <div>
-                    <h1>Hello World!</h1>
- <input type="number" name="id"  value="${post.postId}" /><br/>
+                    <h1>Edit your Story</h1>
+ <input type="number" name="id"  value="${post.postId}" hidden/><br/>
                     <label for="content">New title:</label>
                     <input type="text" id="title"  name="title"  value="${post.title}" /><br/>
 
@@ -90,7 +100,7 @@
                     Post by : <input type="text" name="username" value="${user.username}" readonly>
 ${Message}
 <input type="submit" name="action" value="EDIT">
-<input type="submit" name="action" value="DELETE">
+<input type="submit" name="action" value="DELETE" >
 
 
 <%--    <a href="editPost" 

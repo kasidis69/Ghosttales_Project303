@@ -76,12 +76,17 @@ public class editPostServlet extends HttpServlet {
 
             //------------Delete--------------   
         } else  {
-            String DELETE = "DELETE FROM Post p WHERE p.postId =" +post_id+ "";
+           
+            
+            String DELETE = "DELETE FROM Favoritelist f WHERE f.favoritelistPK.postpostid=" +post_id+ "";
+            String DELETE1 = "DELETE FROM Post p WHERE p.postId =" +post_id+ "";
 
             Query q = em.createQuery(DELETE);
+            Query q1 = em.createQuery(DELETE1);
 
             em.getTransaction().begin();
             q.executeUpdate();
+            q1.executeUpdate();
             em.getTransaction().commit();
 
             request.getRequestDispatcher("/homepage").forward(request, response);

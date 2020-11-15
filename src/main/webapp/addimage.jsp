@@ -21,6 +21,22 @@
 
   <!-- Custom styles for this template -->
   <link href="css/clean-blog.min.css" rel="stylesheet">
+   <style>
+            #content{
+                resize: none;
+                
+            }
+
+            .center {margin: auto;
+                     height: 100%;
+                     width: 70%;
+word-wrap:break-word;
+                     padding: 100px;
+            }
+            .success{
+                color: green;
+            }
+        </style>
     </head>
     
     <body>
@@ -76,20 +92,27 @@
       </div>
     </div>
   </header>
+  <div class="center">
         <form action ="postServlet" method="POST"  >
-        <h1>POST !!</h1>
+        <h1>Youe Post !!</h1>
 
-        <label for="content">Post your story here:</label>
-        <input type="text" name="title" id="title" placeholder="title" value="${show.title}"  readonly />
+        <label for="content">Your story here:</label>
+        <h3>Title:</h3>${show.title}<br/>
+        <hr/>
 
 
-        <textarea placeholder="content" id="content" name="content"  rows="5" cols="150" readonly>
-${show.content}
+        
+        <h3>Content:</h3>${show.content}
+        <hr/>
   
-  </textarea>
+  
 <br>
-Post by : <input type="text" name="username" value="${user.username}" readonly>
-บันทึกข้อมูลสำเร็จ
+<h3>Post by </h3> ${user.username}
+<br/>
+<br/>
+<div class="success">
+    <h5>บันทึกข้อมูลสำเร็จ!   <img src ="img/check_post.png" width="20"/> </h5>
+</div>
 <!--input type="file" name="file"/-->
   
 
@@ -105,5 +128,6 @@ Post by : <input type="text" name="username" value="${user.username}" readonly>
     <input type="file" name="file"/>
     <input type="submit" value="submit" />
 </form>
+  </div>
     </body>
 </html>

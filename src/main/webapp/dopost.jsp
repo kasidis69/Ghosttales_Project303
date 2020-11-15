@@ -27,7 +27,11 @@
 
   <!-- Custom styles for this template -->
   <link href="css/clean-blog.min.css" rel="stylesheet">
-
+  <style>
+      .content{
+  word-wrap:break-word;
+      }
+  </style>
 </head>
 
 <body>
@@ -103,7 +107,9 @@
   <article>
     <div class="container">
       <div class="row">
+
         <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="content">
             <img src="img/${post.postId}.jpg" width="800" height="400"/>
                <br>
                <a  href="${user == null  ?'login.jsp':'favoritelist'}?id=${post.postId}&&username=${user.username}"> <img src ="img/${follow? 'heart3.png':'heart1.png'}" width="20"/>  ${count}</a> 
