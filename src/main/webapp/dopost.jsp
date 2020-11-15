@@ -141,7 +141,7 @@
                 
                  
  
-               username : <a href="profile?name=${cm.commentPK.userinfousername}">${cm.commentPK.userinfousername}</a>
+               username : <a href="getprofile?name=${cm.commentPK.userinfousername}">${cm.commentPK.userinfousername}</a>
          
         
         </h6>

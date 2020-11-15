@@ -106,6 +106,7 @@
  
     
         <a href="getpost?id=${post.postId}" > ${post.title}  </a>
+        <br>
         <a href="getpost?id=${post.postId}" > <img src="img/${post.postId}.jpg" width="650" height="300"/>  </a>
         
         </h2>

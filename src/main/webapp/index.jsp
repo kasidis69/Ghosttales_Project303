@@ -124,6 +124,8 @@
  
     
         <a href="getpost?id=${post.postId}" > ${post.title} </a>
+        <br>
+        
         <a href="getpost?id=${post.postId}" > <img src="img/${post.postId}.jpg" width="650" height="300"/> </a>
         </h2>
         
@@ -132,7 +134,7 @@
             </h3>
           </a>
           <p class="post-meta">Posted by
-            <a href="profile?name=${post.userinfousername.username}">${post.userinfousername.username}  </a>
+            <a href="getprofile?name=${post.userinfousername.username}">${post.userinfousername.username}  </a>
             on ${post.createTime}  </p>
           
           <p class="post-meta" style="color: #000">  Like(${post.totallike})        Comment(${post.totalcomment})  </p>
@@ -146,6 +148,7 @@
    
 </c:forEach>
     
+   
               <!--Man must explore, and this is exploration at its greatest-->
             
               

@@ -103,6 +103,7 @@
  
     
         <a href="getpost?id=${my.post.postId}">${my.post.title}  </a>
+        <br>
         <a href="getpost?id=${my.post.postId}"><img src="img/${my.post.postId}.jpg" width="650" height="300"/> </a>
         </h2>
         
@@ -111,10 +112,10 @@
             </h3>
           </a>
           <p class="post-meta">Posted by
-            <a href="profile?name=${my.post.userinfousername.username}">${my.post.userinfousername.username}  </a>
+            <a href="getprofile?name=${my.post.userinfousername.username}">${my.post.userinfousername.username}  </a>
             on ${my.post.createTime}  </p>
           
-          <p class="post-meta" style="color: #000">  Like(${post.totallike})        Comment(${post.totalcomment})  </p>
+          <p class="post-meta" style="color: #000">  Like(${my.post.totallike})        Comment(${my.post.totalcomment})  </p>
           
         </div>
         <hr>

@@ -52,6 +52,10 @@
         <servlet-name>commentServlet</servlet-name>
         <servlet-class>servlet.commentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getprofileServlet</servlet-name>
+        <servlet-class>servlet.getprofileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homepageServlet</servlet-name>
         <url-pattern>/homepage</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>commentServlet</servlet-name>
         <url-pattern>/comment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getprofileServlet</servlet-name>
+        <url-pattern>/getprofile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

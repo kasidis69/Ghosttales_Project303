@@ -82,18 +82,30 @@ public class postServlet extends HttpServlet {
         Query q = em.createQuery(sql2);
      
         List <Post>ps =q.getResultList() ;
-        
-        int num =    ps.size();
-        int countt = (int) q.getResultList().get(num-1);
-        int count = countt+1;
+  
+       
       
 //        long countt = (long)q.getSingleResult();
 //        int count = (int) countt+1;
         
         
-             Post post = new Post();
-    
+             Post post = new Post();           
+        int num =    ps.size();
+        if(num==0){
+           int countt = num+1 ;
+            int count = countt;
             post.setPostId(count);
+            session.setAttribute("num",count);
+        }else{
+             int countt = (int) q.getResultList().get(num-1);
+        int count = countt+1;
+            System.out.println(num);
+            System.out.println(countt);
+            System.out.println(count);
+        post.setPostId(count);
+        session.setAttribute("num",count);
+        }
+            
            post.setTitle(title);
             post.setContent(content);
             post.setCreateTime(java.sql.Date.valueOf(today));
@@ -114,7 +126,7 @@ public class postServlet extends HttpServlet {
      
  
             session.setAttribute("show", post);
-            session.setAttribute("num",count);
+            
             
 //            post = em.find(Post.class, random_int);
 //            session.setAttribute("post", post.getContent());

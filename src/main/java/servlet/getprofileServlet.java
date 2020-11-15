@@ -7,7 +7,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,7 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Post;
 import model.UserInfo;
 
@@ -25,7 +23,7 @@ import model.UserInfo;
  *
  * @author User
  */
-public class profileServlet extends HttpServlet {
+public class getprofileServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,17 +36,14 @@ public class profileServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-       String username = (String) session.getAttribute("userr");
         
-       
-       
+        
+        String username = request.getParameter("name");
          response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Ghosttales_PU");
         EntityManager em = emf.createEntityManager();
         String sql= "SELECT p FROM Post p WHERE p.userinfousername = :userinfousername" ; 
         Query qry =em.createQuery(sql);
@@ -73,8 +68,6 @@ public class profileServlet extends HttpServlet {
          
          
          request.getRequestDispatcher("/profile.jsp").forward(request, response);
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
