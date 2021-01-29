@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +29,7 @@ import model.UserInfo;
 @WebServlet(name = "loginservlet", urlPatterns = {"/login"})
 public class loginservlet extends HttpServlet {
 
+     @PersistenceUnit(unitName = "Ghosttales_PU")
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,10 +47,11 @@ public class loginservlet extends HttpServlet {
        // java.util.List<User> rs = query.getResultList();       
 //for (User r:rs){
           // System.out.println(r.getName());     
-       String username = request.getParameter("username");
-     String password = request.getParameter("password");
-      //int name = Integer.parseInt(username);
-      UserInfo u =em.find(UserInfo.class, username);
+       String username = request.getParameter("username");            
+      String password = request.getParameter("password");
+     // int name = Integer.parseInt(username);
+      UserInfo u =em.find(UserInfo.class, username);           
+      
       //Query u =em.createNamedQuery("User.findAll");
         
       if (u != null && u.getPassword().equals(password) ) {

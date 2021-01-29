@@ -48,7 +48,7 @@ public class homepageServlet extends HttpServlet {
           Query q = em.createQuery(sql);
           
          {
-              List <Post> ps =q.getResultList().subList(0,3);
+              List <Post> ps =q.getResultList();
               HttpSession session = request.getSession();
                 
                session.setAttribute("ps",ps);
